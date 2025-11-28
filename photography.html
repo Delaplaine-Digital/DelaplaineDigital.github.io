@@ -1,16 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Photography - Delaplaine Digital Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Photography</h1>
-  <p>A collection of my photography and aerial photography work.</p>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-title">Delaplaine Digital Solutions</div>
+        <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+      </div>
+      <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="photography.html" class="nav-link active">Photography</a>
+        <a href="vehicles.html" class="nav-link">Vehicles</a>
+        <a href="computer-projects.html" class="nav-link">Computer Projects</a>
+        <a href="printing.html" class="nav-link">3D Printing</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </header>
 
-  <h2>Photo Galleries Coming Soon</h2>
-  <p>Images will be stored in <code>/assets/photography/</code></p>
+    <main>
+      <h1 class="page-title">Photography</h1>
+      <p class="page-subtitle">
+        Still images and aerial shots — eventually organized into galleries with notes.
+      </p>
 
-  <a href="index.html">Back to Home</a>
+      <section class="section-card">
+        <h2>Galleries coming soon</h2>
+        <p>
+          This page will hold curated sets of photos, before/after edits, and some short
+          breakdowns of how each shot was made (gear, settings, and process).
+        </p>
+        <p class="small-note">
+          When you're ready, add images under <code>/assets/photography/</code> and link to
+          them here.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      © <span id="year"></span> Delaplaine Digital Solutions
+    </footer>
+  </div>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
