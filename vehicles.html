@@ -1,16 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Photography - Delaplaine Digital Solutions</title>
+  <meta charset="UTF-8" />
+  <title>Vehicle Projects - Delaplaine Digital Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Photography</h1>
-  <p>A collection of my photography and aerial photography work.</p>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-title">Delaplaine Digital Solutions</div>
+        <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+      </div>
+      <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="photography.html" class="nav-link">Photography</a>
+        <a href="vehicles.html" class="nav-link active">Vehicles</a>
+        <a href="computer-projects.html" class="nav-link">Computer Projects</a>
+        <a href="printing.html" class="nav-link">3D Printing</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </header>
 
-  <h2>Photo Galleries Coming Soon</h2>
-  <p>Images will be stored in <code>/assets/photography/</code></p>
+    <main>
+      <h1 class="page-title">Vehicle Projects</h1>
+      <p class="page-subtitle">
+        Electronics, lighting, microcontrollers, and whatever else ends up bolted to the truck.
+      </p>
 
-  <a href="index.html">Back to Home</a>
+      <section class="section-card">
+        <h2>Projects to document</h2>
+        <ul class="small-note">
+          <li>ESP32 truck telemetry / WiFi portal</li>
+          <li>LED / Knight Rider scanner modules</li>
+          <li>Horn controller and relay experiments</li>
+          <li>Sensor mounts and 3D printed brackets</li>
+        </ul>
+        <p class="small-note">
+          Related images can live in <code>/assets/vehicles/</code> with short write-ups here.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      © <span id="year"></span> Delaplaine Digital Solutions
+    </footer>
+  </div>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
