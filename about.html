@@ -1,17 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>About Me - Delaplaine Digital Solutions</title>
+  <meta charset="UTF-8" />
+  <title>About - Delaplaine Digital Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>About Me</h1>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-title">Delaplaine Digital Solutions</div>
+        <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+      </div>
+      <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="photography.html" class="nav-link">Photography</a>
+        <a href="vehicles.html" class="nav-link">Vehicles</a>
+        <a href="computer-projects.html" class="nav-link">Computer Projects</a>
+        <a href="printing.html" class="nav-link">3D Printing</a>
+        <a href="about.html" class="nav-link active">About</a>
+      </nav>
+    </header>
 
-  <p>Welcome to Delaplaine Digital Solutions. I'm Eric — a tech enthusiast, 
-  photographer, builder, and cybersecurity professional. This site 
-  documents all of my creative and technical projects across photography, 
-  vehicles, 3D printing, and computer systems.</p>
+    <main>
+      <h1 class="page-title">About Me</h1>
+      <p class="page-subtitle">
+        A quick overview of who I am and what Delaplaine Digital Solutions is about.
+      </p>
 
-  <a href="index.html">Back to Home</a>
+      <section class="section-card">
+        <h2>Eric / Delaplaine Digital Solutions</h2>
+        <p>
+          I'm a builder who bounces between hardware, software, photography, and anything
+          that lets me combine them. This site is where I document the projects that feel
+          worth sharing — especially the ones that involve vehicles, sensors, networks,
+          and visuals.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>What I like working on</h2>
+        <ul class="small-note">
+          <li>Embedded microcontroller projects (ESP32, Arduino, sensors)</li>
+          <li>Vehicle electronics and custom wiring</li>
+          <li>Networking and security labs</li>
+          <li>3D printed parts that actually solve problems</li>
+          <li>Photography and aerial footage</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      © <span id="year"></span> Delaplaine Digital Solutions
+    </footer>
+  </div>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
