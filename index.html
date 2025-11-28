@@ -1,20 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Delaplaine Digital Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Delaplaine Digital Solutions</h1>
-  <p>Photography, vehicles, tech projects, and 3D printing.</p>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-title">Delaplaine Digital Solutions</div>
+        <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+      </div>
+      <nav class="navbar">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="photography.html" class="nav-link">Photography</a>
+        <a href="vehicles.html" class="nav-link">Vehicles</a>
+        <a href="computer-projects.html" class="nav-link">Computer Projects</a>
+        <a href="printing.html" class="nav-link">3D Printing</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </header>
 
-  <h2>Explore:</h2>
-  <ul>
-    <li><a href="photography.html">Photography</a></li>
-    <li><a href="vehicles.html">Vehicles</a></li>
-    <li><a href="computer-projects.html">Computer Projects</a></li>
-    <li><a href="printing.html">3D Printing</a></li>
-    <li><a href="about.html">About Me</a></li>
-  </ul>
+    <main>
+      <h1 class="page-title">Welcome</h1>
+      <p class="page-subtitle">
+        A hub for my builds, experiments, and visuals — from embedded electronics in vehicles
+        to photography, 3D prints, and computer projects.
+      </p>
+
+      <section class="section-card">
+        <h2>What this site is</h2>
+        <p>
+          This is a living portfolio of the things I design, break, repair, and capture.
+          Over time it will include detailed write-ups, photos, and links to code for
+          projects across multiple areas.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Explore the sections</h2>
+        <div class="grid">
+          <div class="grid-card">
+            <h3>Photography</h3>
+            <p>Selected stills and aerial work, with some behind-the-scenes notes.</p>
+            <a href="photography.html">View photography →</a>
+          </div>
+
+          <div class="grid-card">
+            <h3>Vehicles</h3>
+            <p>Electronics in the truck, lighting, custom wiring, and microcontroller builds.</p>
+            <a href="vehicles.html">View vehicle projects →</a>
+          </div>
+
+          <div class="grid-card">
+            <h3>Computer Projects</h3>
+            <p>Homelab, networking, security experiments, and scripts.</p>
+            <a href="computer-projects.html">View computer projects →</a>
+          </div>
+
+          <div class="grid-card">
+            <h3>3D Printing</h3>
+            <p>Practical prints, mounts, housings, and Fusion 360 designs.</p>
+            <a href="printing.html">View 3D printing →</a>
+          </div>
+        </div>
+
+        <p class="small-note">
+          This is the first version — content and structure will evolve as I add more projects.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      © <span id="year"></span> Delaplaine Digital Solutions
+    </footer>
+  </div>
+
+  <script>
+    // simple dynamic year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
