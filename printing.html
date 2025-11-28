@@ -1,16 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>3D Printing - Delaplaine Digital Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>3D Printing</h1>
-  <p>Projects, builds, designs, prints, and Fusion 360 work.</p>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-title">Delaplaine Digital Solutions</div>
+        <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+      </div>
+      <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="photography.html" class="nav-link">Photography</a>
+        <a href="vehicles.html" class="nav-link">Vehicles</a>
+        <a href="computer-projects.html" class="nav-link">Computer Projects</a>
+        <a href="printing.html" class="nav-link active">3D Printing</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </header>
 
-  <h2>3D Printing Content Coming Soon</h2>
-  <p>Images stored in <code>/assets/printing/</code></p>
+    <main>
+      <h1 class="page-title">3D Printing</h1>
+      <p class="page-subtitle">
+        Functional prints, mounts, enclosures, and experiments from the printer.
+      </p>
 
-  <a href="index.html">Back to Home</a>
+      <section class="section-card">
+        <h2>What will go here</h2>
+        <p>
+          This section will have photos of prints, notes on design choices, and possibly
+          links to STL files or Fusion 360 screenshots.
+        </p>
+        <p class="small-note">
+          Print photos can go in <code>/assets/printing/</code>.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      © <span id="year"></span> Delaplaine Digital Solutions
+    </footer>
+  </div>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
