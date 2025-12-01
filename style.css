@@ -191,9 +191,9 @@ code {
   .brand-title {
     font-size: 1.25rem;
   }
+}
 
-
-
+/* Photo grid */
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -201,7 +201,7 @@ code {
   margin-top: 0.75rem;
 }
 
-  .photo-tile {
+.photo-tile {
   position: relative;
   overflow: hidden;
   border-radius: 10px;
@@ -211,23 +211,17 @@ code {
   text-decoration: none;        /* no underline */
 }
 
-
 .photo-tile img {
   width: 100%;
-  height: 70px;       /* much smaller thumbnails */
+  height: 70px;                 /* small thumbnails */
   object-fit: cover;
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
-
-
-
 
 .photo-tile:hover img {
   transform: scale(1.04);
   opacity: 0.95;
 }
-
-
 
 
 }
