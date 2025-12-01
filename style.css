@@ -201,14 +201,7 @@ code {
   margin-top: 0.75rem;
 }
 
-.photo-tile img {
-  width: 100%;
-  height: 70px;       /* much smaller thumbnails */
-  object-fit: cover;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-.photo-tile {
+  .photo-tile {
   position: relative;
   overflow: hidden;
   border-radius: 10px;
@@ -218,13 +211,16 @@ code {
   text-decoration: none;        /* no underline */
 }
 
+
 .photo-tile img {
-  display: block;
   width: 100%;
-  height: 90px;                 /* much smaller thumbnail height */
+  height: 70px;       /* much smaller thumbnails */
   object-fit: cover;
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
+
+
+
 
 .photo-tile:hover img {
   transform: scale(1.04);
