@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>VM-Based NAS & File Server - Delaplaine Digital Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-title">Delaplaine Digital Solutions</div>
+        <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+      </div>
+      <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="photography.html" class="nav-link">Photography</a>
+        <a href="vehicles.html" class="nav-link">Vehicles</a>
+        <a href="computer-projects.html" class="nav-link active">Computer Projects</a>
+        <a href="printing.html" class="nav-link">3D Printing</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="page-title">VM-Based NAS & File Server</h1>
+      <p class="page-subtitle">
+        A virtualized NAS running on a Windows 11 Pro host to centralize storage for photos, projects, and lab data.
+      </p>
+
+      <section class="section-card">
+        <h2>Overview</h2>
+        <p>
+          This NAS lives as a virtual machine on a Windows 11 Pro host. It serves as the main hub
+          for storing photography sets, website assets, project files, and backups. The goal is to
+          get the benefits of a dedicated NAS using existing hardware and virtualization.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Host & VM Setup</h2>
+        <p>
+          Use this section to describe your host hardware, hypervisor choice, how the virtual disks
+          are mapped, and what OS the NAS VM is running. You can also include notes about CPU/RAM
+          allocation and how many disks are attached.
+        </p>
+        <p class="small-note">
+          Example topics: virtual vs physical disks, storage pools, network adapters, and backup strategy.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>SMB Shares & Access</h2>
+        <p>
+          Here you can document which shares exist (photos, projects, ISO storage, etc.), how access
+          is controlled, and how your main PC and other devices connect to the NAS.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Photos & Screenshots</h2>
+        <p class="small-note">
+          Store related images under <code>/assets/computers/nas/</code> and add them below.
+        </p>
+        <div class="photo-grid">
+          <!-- Example usage: uncomment and replace with real filenames -->
+          <!--
+          <a class="photo-tile" href="assets/computers/nas/1.jpg" target="_blank">
+            <img src="assets/computers/nas/1.jpg" alt="NAS screenshot 1" loading="lazy">
+          </a>
+          <a class="photo-tile" href="assets/computers/nas/2.jpg" target="_blank">
+            <img src="assets/computers/nas/2.jpg" alt="NAS screenshot 2" loading="lazy">
+          </a>
+          -->
+        </div>
+        <p class="small-note">
+          © Delaplaine Digital Solutions — All images on this page are copyrighted.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Issues & Lessons Learned</h2>
+        <p>
+          Use this space for performance issues (like slow copy speeds or pauses), tuning changes,
+          and what you’d do differently if you rebuilt this stack from scratch.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Delaplaine Digital Solutions.</div>
+      <div>All images and content on this website are copyrighted and owned by Delaplaine Digital Solutions.</div>
+      <div>
+        For licensing, usage permissions, or other inquiries, please contact
+        <a href="mailto:DelaplaineDigitalSolutions@gmail.com">DelaplaineDigitalSolutions@gmail.com</a>.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

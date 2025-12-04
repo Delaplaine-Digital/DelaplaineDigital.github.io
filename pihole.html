@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pi-hole & DNS Filtering - Delaplaine Digital Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-title">Delaplaine Digital Solutions</div>
+        <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+      </div>
+      <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="photography.html" class="nav-link">Photography</a>
+        <a href="vehicles.html" class="nav-link">Vehicles</a>
+        <a href="computer-projects.html" class="nav-link active">Computer Projects</a>
+        <a href="printing.html" class="nav-link">3D Printing</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="page-title">Pi-hole & DNS Filtering</h1>
+      <p class="page-subtitle">
+        Centralized DNS filtering for ads, trackers, and noisy domains on the network.
+      </p>
+
+      <section class="section-card">
+        <h2>Setup & Integration</h2>
+        <p>
+          Describe where Pi-hole runs (Raspberry Pi, VM, etc.), which clients use it, and how it
+          integrates with OPNsense or your router. Mention which blocklists you use and how you
+          tuned false positives.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Dashboard & Metrics</h2>
+        <p class="small-note">
+          Store screenshots under <code>/assets/computers/pihole/</code> and add them below.
+        </p>
+        <div class="photo-grid">
+          <!--
+          <a class="photo-tile" href="assets/computers/pihole/1.jpg" target="_blank">
+            <img src="assets/computers/pihole/1.jpg" alt="Pi-hole dashboard" loading="lazy">
+          </a>
+          -->
+        </div>
+        <p class="small-note">
+          © Delaplaine Digital Solutions — All images on this page are copyrighted.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Impact & Observations</h2>
+        <p>
+          Use this section to talk about how much traffic is blocked, any surprises in the logs,
+          and how it affects day-to-day browsing and streaming.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Delaplaine Digital Solutions.</div>
+      <div>All images and content on this website are copyrighted and owned by Delaplaine Digital Solutions.</div>
+      <div>
+        For licensing, usage permissions, or other inquiries, please contact
+        <a href="mailto:DelaplaineDigitalSolutions@gmail.com">DelaplaineDigitalSolutions@gmail.com</a>.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Homelab & Virtualization Stack - Delaplaine Digital Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-title">Delaplaine Digital Solutions</div>
+        <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+      </div>
+      <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="photography.html" class="nav-link">Photography</a>
+        <a href="vehicles.html" class="nav-link">Vehicles</a>
+        <a href="computer-projects.html" class="nav-link active">Computer Projects</a>
+        <a href="printing.html" class="nav-link">3D Printing</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="page-title">Homelab & Virtualization Stack</h1>
+      <p class="page-subtitle">
+        The Windows 11 Pro host and VMs that power the NAS, firewall, tools, and experiments.
+      </p>
+
+      <section class="section-card">
+        <h2>Host Hardware</h2>
+        <p>
+          Document the CPU, RAM, storage layout, and any special hardware in the homelab machine.
+          This is useful context for performance and future expansion.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Virtualization Setup</h2>
+        <p>
+          Describe your hypervisor choice, how VMs are structured (NAS, OPNsense, Pi-hole,
+          SOC tools, malware lab, etc.), and how resources are split between them.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>VM Inventory & Roles</h2>
+        <p>
+          Use this area to list each VM, what it does, and any notes (RAM/CPU allocation,
+          storage usage, network interfaces).
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Screenshots & Diagrams</h2>
+        <p class="small-note">
+          Store images under <code>/assets/computers/homelab/</code> and add them below.
+        </p>
+        <div class="photo-grid">
+          <!--
+          <a class="photo-tile" href="assets/computers/homelab/1.jpg" target="_blank">
+            <img src="assets/computers/homelab/1.jpg" alt="Hypervisor or VM list" loading="lazy">
+          </a>
+          -->
+        </div>
+        <p class="small-note">
+          © Delaplaine Digital Solutions — All images on this page are copyrighted.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Delaplaine Digital Solutions.</div>
+      <div>All images and content on this website are copyrighted and owned by Delaplaine Digital Solutions.</div>
+      <div>
+        For licensing, usage permissions, or other inquiries, please contact
+        <a href="mailto:DelaplaineDigitalSolutions@gmail.com">DelaplaineDigitalSolutions@gmail.com</a>.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

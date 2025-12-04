@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SOC Sim & Security Lab - Delaplaine Digital Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-title">Delaplaine Digital Solutions</div>
+        <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+      </div>
+      <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="photography.html" class="nav-link">Photography</a>
+        <a href="vehicles.html" class="nav-link">Vehicles</a>
+        <a href="computer-projects.html" class="nav-link active">Computer Projects</a>
+        <a href="printing.html" class="nav-link">3D Printing</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="page-title">SOC Sim & Security Lab (Planned)</h1>
+      <p class="page-subtitle">
+        A simulated security operations center for practicing detection, investigation, and response.
+      </p>
+
+      <section class="section-card">
+        <h2>Concept</h2>
+        <p>
+          Outline what you want this SOC lab to be: log sources, SIEM/SOC tools, alerting pipeline,
+          and how attacks will be simulated for training and experimentation.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Planned Tooling</h2>
+        <p>
+          Use this section to list possible tools (open-source SIEM, log collectors, dashboards,
+          incident tracking, etc.) and how they’ll fit together.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Lab Topology & Data Flows</h2>
+        <p>
+          Describe how logs move from endpoints and network devices into the SOC stack, and how
+          alerts are generated and reviewed.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Future Screenshots</h2>
+        <p class="small-note">
+          When the lab is built, screenshots and diagrams can live under
+          <code>/assets/computers/soc-lab/</code>.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Delaplaine Digital Solutions.</div>
+      <div>All images and content on this website are copyrighted and owned by Delaplaine Digital Solutions.</div>
+      <div>
+        For licensing, usage permissions, or other inquiries, please contact
+        <a href="mailto:DelaplaineDigitalSolutions@gmail.com">DelaplaineDigitalSolutions@gmail.com</a>.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

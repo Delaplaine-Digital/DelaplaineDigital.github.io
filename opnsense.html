@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OPNsense Firewall & Network Segmentation - Delaplaine Digital Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-title">Delaplaine Digital Solutions</div>
+        <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+      </div>
+      <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="photography.html" class="nav-link">Photography</a>
+        <a href="vehicles.html" class="nav-link">Vehicles</a>
+        <a href="computer-projects.html" class="nav-link active">Computer Projects</a>
+        <a href="printing.html" class="nav-link">3D Printing</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="page-title">OPNsense Firewall & Network Segmentation</h1>
+      <p class="page-subtitle">
+        Using OPNsense to segment lab traffic, manage rules, and gain visibility into home network flows.
+      </p>
+
+      <section class="section-card">
+        <h2>Network Topology</h2>
+        <p>
+          Describe how the WAN, OPNsense box or VM, DD-WRT router (acting as a switch), and internal
+          network segments are wired together. You can include simple diagrams or list out interfaces
+          (WAN, LAN, lab, IoT, etc.).
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Firewall Rules & Policies</h2>
+        <p>
+          Use this space to outline your ruleset: what can talk to what, how lab networks are isolated,
+          any logging policies, and how DNS (via Pi-hole) fits into the picture.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Screenshots & Diagrams</h2>
+        <p class="small-note">
+          Store related images under <code>/assets/computers/opnsense/</code> and add them below.
+        </p>
+        <div class="photo-grid">
+          <!--
+          <a class="photo-tile" href="assets/computers/opnsense/1.jpg" target="_blank">
+            <img src="assets/computers/opnsense/1.jpg" alt="OPNsense dashboard" loading="lazy">
+          </a>
+          -->
+        </div>
+        <p class="small-note">
+          © Delaplaine Digital Solutions — All images on this page are copyrighted.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Future Improvements</h2>
+        <p>
+          Ideas like adding VPN, intrusion detection, better VLAN structure, or more detailed logging
+          can go here.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Delaplaine Digital Solutions.</div>
+      <div>All images and content on this website are copyrighted and owned by Delaplaine Digital Solutions.</div>
+      <div>
+        For licensing, usage permissions, or other inquiries, please contact
+        <a href="mailto:DelaplaineDigitalSolutions@gmail.com">DelaplaineDigitalSolutions@gmail.com</a>.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
