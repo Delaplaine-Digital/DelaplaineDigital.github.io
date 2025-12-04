@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>3D Printing - Delaplaine Digital Solutions</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
   <div class="site-wrapper">
@@ -24,32 +24,129 @@
     </header>
 
     <main>
-      <h1 class="page-title">3D Printing</h1>
+      <h1 class="page-title">3D Printing & Fabrication</h1>
       <p class="page-subtitle">
-        Functional prints, mounts, enclosures, and experiments from the printer.
+        Practical parts, custom mounts, and physical pieces that support my vehicle, homelab,
+        and everyday projects. Laser cutting work will be added here as it grows.
       </p>
 
       <section class="section-card">
-        <h2>What will go here</h2>
+        <h2>How This Section Is Organized</h2>
         <p>
-          This section will have photos of prints, notes on design choices, and possibly
-          links to STL files or Fusion 360 screenshots.
+          This page focuses on 3D-printed parts and, later, small-scale laser-cut projects.
+          Each card below represents a part I've designed or printed, with links or space for
+          photos and files.
         </p>
         <p class="small-note">
-          Print photos can go in <code>/assets/printing/</code>.
+          Project assets are organized under:
+          <br>
+          <code>/assets/printing/Photos/</code> — pictures of finished parts and in-use shots<br>
+          <code>/assets/printing/Files/</code> — project files, exports, or links to external hosts
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>3D Printed Projects</h2>
+        <div class="grid">
+          <div class="grid-card">
+            <h3>Show Steer Trophy</h3>
+            <p>
+              A custom show steer trophy piece, modeled and printed as a display item. This is a good
+              example of combining aesthetics with structural support in a print.
+            </p>
+            <p class="small-note">
+              Photos will live under <code>/assets/printing/Photos/</code> once documented.
+            </p>
+          </div>
+
+          <div class="grid-card">
+            <h3>Humidifier Vent</h3>
+            <p>
+              A custom vent adapter for a humidifier setup, designed to route airflow where it’s needed.
+              The model is designed but still needs to be printed and photographed.
+            </p>
+            <p class="small-note">
+              Status: model ready, print and photos pending.
+            </p>
+          </div>
+
+          <div class="grid-card">
+            <h3>100&nbsp;mm Coupler for Inline Air Vent</h3>
+            <p>
+              A 100&nbsp;mm coupler created to interface with an inline air vent, allowing flexible
+              ducting or additional components to be attached securely.
+            </p>
+            <p class="small-note">
+              Designed as a functional part to solve a specific airflow and connection problem.
+            </p>
+          </div>
+
+          <div class="grid-card">
+            <h3>36&nbsp;mm to 32&nbsp;mm Vacuum–Sander Coupler</h3>
+            <p>
+              A reducer coupler that adapts a 36&nbsp;mm vacuum hose down to a 32&nbsp;mm handheld
+              sander port. This helps with dust collection and makes mismatched tools actually work
+              together.
+            </p>
+            <p class="small-note">
+              A straightforward but useful adapter that shows how 3D printing can bridge odd sizes.
+            </p>
+          </div>
+
+          <div class="grid-card">
+            <h3>1990 Ford F350 Shift Knob</h3>
+            <p>
+              A custom shift knob modeled for a 1990 Ford F350. This blends functional geometry with
+              automotive aesthetics to refresh an older interior part.
+            </p>
+            <p class="small-note">
+              Model hosted externally:
+              <a href="https://cults3d.com/en/3d-model/various/1990-ford-f350-shift-knob" target="_blank" rel="noopener">
+                View on Cults3D
+              </a>
+            </p>
+          </div>
+
+          <div class="grid-card">
+            <h3>Fractal Torrent Headphone Mount v1.0</h3>
+            <p>
+              A headphone mount designed for the Fractal Torrent case, giving the headset a clean,
+              dedicated parking spot attached to the PC itself.
+            </p>
+            <p class="small-note">
+              Model hosted externally:
+              <a href="https://cults3d.com/en/3d-model/gadget/fractal-torrent-headphone-mount-v1-0" target="_blank" rel="noopener">
+                View on Cults3D
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <h2>Laser Cutting & Engraving (Planned)</h2>
+        <p>
+          This section will eventually include small laser-cut and engraved projects: labels,
+          panels, simple brackets, and decorative pieces that complement the 3D-printed parts.
+        </p>
+        <p class="small-note">
+          When those projects are ready, they’ll follow the same pattern as above, with photos
+          in <code>/assets/printing/Photos/</code> and files or links referenced from
+          <code>/assets/printing/Files/</code>.
         </p>
       </section>
     </main>
 
-<footer class="site-footer">
-  <div>© <span id="year"></span> Delaplaine Digital Solutions.</div>
-  <div>All images and content on this website are copyrighted and owned by Delaplaine Digital Solutions.</div>
-  <div>
-    For licensing, usage permissions, or other inquiries, please contact
-    <a href="mailto:DelaplaineDigitalSolutions@gmail.com">DelaplaineDigitalSolutions@gmail.com</a>.
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Delaplaine Digital Solutions.</div>
+      <div>All images and content on this website are copyrighted and owned by Delaplaine Digital Solutions.</div>
+      <div>
+        For licensing, usage permissions, or other inquiries, please contact
+        <a href="mailto:DelaplaineDigitalSolutions@gmail.com">DelaplaineDigitalSolutions@gmail.com</a>.
+      </div>
+    </footer>
   </div>
-</footer>
-  </div>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
