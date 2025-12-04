@@ -134,6 +134,19 @@ main {
   gap: 0.35rem;
 }
 
+/* Clickable project cards */
+.grid-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.grid-card-link:hover .grid-card {
+  border-color: rgba(0, 209, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+
 .grid-card h3 {
   font-size: 1rem;
 }
