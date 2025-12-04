@@ -29,129 +29,106 @@
         Homelab, networking, security experiments, and the tools that keep everything running.
       </p>
 
-      <section class="section-card">
-        <h2>Overview</h2>
-        <p>
-          This section documents the computer-side of Delaplaine Digital Solutions:
-          the Windows 11 Pro box that runs VMs, the NAS stack, routing and firewall
-          projects, Pi-hole, and future SOC / malware testing environments.
-          Over time each card below can become a full write-up with screenshots,
-          configs, and code.
-        </p>
-        <p class="small-note">
-          Related screenshots and diagrams can be stored under
-          <code>/assets/computers/</code>.
-        </p>
-      </section>
+      <div class="grid">
+  <a class="grid-card-link" href="nas.html">
+    <div class="grid-card">
+      <h3>VM-Based NAS & File Server</h3>
+      <p>
+        A virtualized NAS running on a Windows 11 Pro host, serving as centralized
+        storage for photos, projects, and backups. Includes SMB shares, access
+        control, and performance tuning work.
+      </p>
+      <p class="small-note">
+        Click for a deeper write-up with screenshots, notes, and configuration ideas.
+      </p>
+    </div>
+  </a>
 
-      <section class="section-card">
-        <h2>Current & Planned Builds</h2>
-        <div class="grid">
-          <div class="grid-card">
-            <h3>VM-Based NAS & File Server</h3>
-            <p>
-              A virtualized NAS running on a Windows 11 Pro host, serving as centralized
-              storage for photos, projects, and backups. Includes SMB shares, access
-              control, and performance tuning work.
-            </p>
-            <p class="small-note">
-              Ideas to cover later: disk layout, virtual disks, backup strategy,
-              performance issues and fixes.
-            </p>
-          </div>
+  <a class="grid-card-link" href="opnsense.html">
+    <div class="grid-card">
+      <h3>OPNsense Firewall & Network Segmentation</h3>
+      <p>
+        A dedicated OPNsense firewall VM / mini PC to separate lab traffic from
+        household devices, experiment with rules, VLANs, and logging, and serve
+        as the core of a more secure home network.
+      </p>
+      <p class="small-note">
+        Click for topology diagrams, ruleset concepts, and setup notes.
+      </p>
+    </div>
+  </a>
 
-          <div class="grid-card">
-            <h3>OPNsense Firewall & Network Segmentation</h3>
-            <p>
-              A dedicated OPNsense firewall VM / mini PC to separate lab traffic from
-              household devices, experiment with rules, VLANs, and logging, and serve
-              as the core of a more secure home network.
-            </p>
-            <p class="small-note">
-              Potential content: WAN/LAN layout, DD-WRT as a switch, rulesets, logging,
-              and lessons learned.
-            </p>
-          </div>
+  <a class="grid-card-link" href="pihole.html">
+    <div class="grid-card">
+      <h3>Pi-hole & DNS Filtering</h3>
+      <p>
+        A Pi-hole instance handling DNS for the network, blocking ads, trackers,
+        and noisy domains. Ties into the firewall for better visibility and
+        control of traffic.
+      </p>
+      <p class="small-note">
+        Click for screenshots, blocklist notes, and integration details.
+      </p>
+    </div>
+  </a>
 
-          <div class="grid-card">
-            <h3>Pi-hole & DNS Filtering</h3>
-            <p>
-              A Pi-hole instance handling DNS for the network, blocking ads, trackers,
-              and noisy domains. Ties into the firewall for better visibility and
-              control of traffic.
-            </p>
-            <p class="small-note">
-              Later: screenshots of the dashboard, blocklists used, and how it ties into
-              the rest of the lab.
-            </p>
-          </div>
+  <a class="grid-card-link" href="homelab.html">
+    <div class="grid-card">
+      <h3>Homelab & Virtualization Stack</h3>
+      <p>
+        The main Windows 11 Pro machine runs multiple VMs: NAS, firewall,
+        potential SOC tools, and sandboxes. This is the platform for testing,
+        learning, and breaking things safely.
+      </p>
+      <p class="small-note">
+        Click for an overview of the host hardware, VM layout, and resource usage.
+      </p>
+    </div>
+  </a>
 
-          <div class="grid-card">
-            <h3>Homelab & Virtualization Stack</h3>
-            <p>
-              The main Windows 11 Pro machine runs multiple VMs: NAS, firewall,
-              potential SOC tools, and sandboxes. This is the platform for testing,
-              learning, and breaking things safely.
-            </p>
-            <p class="small-note">
-              Good place to document: hypervisor choice, resource allocation, and
-              what each VM is responsible for.
-            </p>
-          </div>
+  <a class="grid-card-link" href="soc-lab.html">
+    <div class="grid-card">
+      <h3>SOC Sim & Security Lab (Planned)</h3>
+      <p>
+        A simulated security operations center environment built from open-source
+        tools, log collection, and alerting pipelines to practice detection,
+        investigation, and response workflows.
+      </p>
+      <p class="small-note">
+        Click for ideas on tooling, data sources, and attack scenarios to model.
+      </p>
+    </div>
+  </a>
 
-          <div class="grid-card">
-            <h3>SOC Sim & Security Lab (Planned)</h3>
-            <p>
-              A simulated security operations center environment built from open source
-              tools, log collection, and alerting pipelines to practice detection,
-              investigation, and response workflows.
-            </p>
-            <p class="small-note">
-              Future write-up could include: tool stack, sample attack scenarios,
-              and how alerts are triaged.
-            </p>
-          </div>
+  <a class="grid-card-link" href="malware-lab.html">
+    <div class="grid-card">
+      <h3>Malware Testing / Sandbox Environment (Planned)</h3>
+      <p>
+        A controlled environment for analyzing suspicious files and behavior
+        without risking daily-use machines. Using isolated VMs, strict
+        network rules, and snapshot-based recovery.
+      </p>
+      <p class="small-note">
+        Click for isolation strategies, network rules, and snapshot habits.
+      </p>
+    </div>
+  </a>
 
-          <div class="grid-card">
-            <h3>Malware Testing / Sandbox Environment (Planned)</h3>
-            <p>
-              A controlled environment for analyzing suspicious files and behavior
-              without risking daily-use machines. Will likely use isolated VMs, strict
-              network rules, and snapshot-based recovery.
-            </p>
-            <p class="small-note">
-              Later sections might show: network isolation diagrams, snapshot strategy,
-              and any custom tooling or scripts.
-            </p>
-          </div>
+  <a class="grid-card-link" href="python-tools.html">
+    <div class="grid-card">
+      <h3>Python & Utility Scripts</h3>
+      <p>
+        Small tools written in Python to scan the local network, gather system
+        information, or automate repetitive tasks. These scripts tie together
+        different parts of the lab.
+      </p>
+      <p class="small-note">
+        Click for script breakdowns, example output, and GitHub links.
+      </p>
+    </div>
+  </a>
+</div>
 
-          <div class="grid-card">
-            <h3>Python & Utility Scripts</h3>
-            <p>
-              Small tools written in Python to scan the local network, gather system
-              information, or automate repetitive tasks. These scripts tie together
-              different parts of the lab.
-            </p>
-            <p class="small-note">
-              Eventually: code snippets, GitHub links, and usage examples.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-card">
-        <h2>Next Steps for This Page</h2>
-        <p>
-          As projects evolve, each item above can be expanded into its own dedicated page
-          with more detail. For now, this page works as a map of the computer-side
-          infrastructure behind Delaplaine Digital Solutions.
-        </p>
-        <p class="small-note">
-          When you're ready, you can turn each card into a link and create pages like
-          <code>nas.html</code>, <code>opnsense.html</code>, or <code>soc-lab.html</code>
-          with deeper write-ups.
-        </p>
-      </section>
     </main>
 
     <footer class="site-footer">
