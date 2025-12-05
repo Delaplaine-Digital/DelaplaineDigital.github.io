@@ -239,7 +239,6 @@ code {
   opacity: 0.95;
 }
 
-/* Lightbox overlay for images */
 .lightbox-backdrop {
   position: fixed;
   inset: 0;
@@ -269,6 +268,5 @@ code {
   font-size: 0.8rem;
   opacity: 0.7;
 }
-
 
 

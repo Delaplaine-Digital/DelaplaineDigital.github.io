@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Create a reusable lightbox element once for the whole site
+  // If this page has no photo tiles, do nothing
+  const hasPhotoTiles = document.querySelector("a.photo-tile");
+  if (!hasPhotoTiles) return;
+
+  // Create a reusable lightbox element once for pages that need it
   const lightbox = document.createElement("div");
   lightbox.className = "lightbox-backdrop";
   lightbox.innerHTML = `
