@@ -26,7 +26,7 @@
     <main>
       <h1 class="page-title">VM-Based NAS & File Server</h1>
       <p class="page-subtitle">
-        A virtualized NAS running on a Windows 11 Pro host to centralize storage for photos, projects, and lab data.
+        A virtualized NAS running on a Windows 11 Pro host to centralize storage for photos, projects, and data.
       </p>
 
       <section class="section-card">
@@ -34,19 +34,17 @@
         <p>
           This NAS lives as a virtual machine on a Windows 11 Pro host. It serves as the main hub
           for storing photography sets, website assets, project files, and backups. The goal is to
-          get the benefits of a dedicated NAS using existing hardware and virtualization.
+          get the benefits of a dedicated NAS using existing hardware I had lying around. 
         </p>
       </section>
 
       <section class="section-card">
         <h2>Host & VM Setup</h2>
         <p>
-          Use this section to describe your host hardware, hypervisor choice, how the virtual disks
-          are mapped, and what OS the NAS VM is running. You can also include notes about CPU/RAM
-          allocation and how many disks are attached.
-        </p>
+		A system running an Intel Core i9-13900K with 96 GB DDR5 RAM, hosting virtual machines through Microsoft Hyper-V.        </p>
         <p class="small-note">
-          Example topics: virtual vs physical disks, storage pools, network adapters, and backup strategy.
+          Storage: Two 14 TB HDDs configured in RAID 1, providing drive-level redundancy.
+		Your virtual machines use dynamic VHDX disks, which grow as needed instead of reserving the full size immediately. This also makes the VHDX portable and easy to move
         </p>
       </section>
 
