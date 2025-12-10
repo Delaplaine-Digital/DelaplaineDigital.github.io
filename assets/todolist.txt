@@ -1,0 +1,24 @@
+TODO LIST for Delaplaine Digital
+
+
+-----3D Printing-------
+Show Steer Pictures and contact for similar project comission
+Humidifer Vent File and Pictures  Upload to Cults
+100 mm Coupler for Inline Air Vent File and Pictures upload to cults
+36 mm to 32 mm Vacuum–Sander Coupler File and Pictures
+Add part about commissions
+
+
+
+Computer Projects
+NAS File Server - Nas.html pictures
+OPNSENSE Firewall
+Pihole delete
+Homelab 
+SOC SIM
+Malware Testing
+Python & Utility Scrips upload info on all scripts and info either on github or website
+
+Vehicles
+Install / take pics/ upload webserver esp32 to Truck
+

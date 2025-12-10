@@ -56,6 +56,8 @@
 		In a corporate or enterprise environment, this would typically be integrated with Active Directory, 
 		allowing domain users and groups to manage access through centralized authentication. 
 		While I’m not using AD in my current homelab setup, the NAS is fully capable of supporting it.
+		
+		To access the files, I just mapped it as a network drive whose location is \\File\ on my local network, the IP I associated it with is 192.168.1.5 just incase.
       </p>
       </section>
 
@@ -65,11 +67,11 @@
           Store related images under <code>/assets/computers/nas/</code> and add them below.
         </p>
         <div class="photo-grid">
-          <!-- Example usage: uncomment and replace with real filenames -->
-          <!--
           <a class="photo-tile" href="assets/computers/nas/1.jpg" target="_blank">
-            <img src="assets/computers/nas/1.jpg" alt="NAS screenshot 1" loading="lazy">
+            <img src="assets/computers/nas/1.jpg" alt="Screenshot of how it views" loading="lazy">
           </a>
+		  <!-- Example usage: uncomment and replace with real filenames -->
+          <!--
           <a class="photo-tile" href="assets/computers/nas/2.jpg" target="_blank">
             <img src="assets/computers/nas/2.jpg" alt="NAS screenshot 2" loading="lazy">
           </a>
@@ -82,10 +84,15 @@
 
       <section class="section-card">
         <h2>Issues & Lessons Learned</h2>
+		<p>
+      I ran into several performance issues when working with large photography files stored on my NAS. Because the NAS runs inside a virtual machine backed by mechanical hard drives, large images were slow to load, preview, and transfer over SMB. 
+	  Windows Explorer would often pause during file copies, causing network speeds to spike and then drop to zero before continuing. Accessing large folders of high-resolution photos also proved slow because SMB has to pull file metadata and thumbnails across the network, which created additional delays.
+       </p>
+
         <p>
-          Use this space for performance issues (like slow copy speeds or pauses), tuning changes,
-          and what you’d do differently if you rebuilt this stack from scratch.
-        </p>
+     These issues were ultimately the result of three factors working together: large file sizes, the inherent overhead of SMB, and the performance limitations of running a NAS inside a VM on spinning disks.
+     Once the storage layout was optimized and adjustments were made to how the NAS VM handled the virtual disk, performance improved and file access became much more responsive.
+     </p>
       </section>
     </main>
 
