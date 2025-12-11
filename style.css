@@ -269,4 +269,11 @@ code {
   opacity: 0.7;
 }
 
+.photo-tile-small img {
+  width: 350px;        /* square width */
+  height: 350px;       /* square height */
+  object-fit: cover;   /* crops without distortion */
+  border-radius: 8px;  /* optional */
+  display: block;
+}
 
