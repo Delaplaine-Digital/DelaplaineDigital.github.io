@@ -32,41 +32,53 @@
       <section class="section-card">
         <h2>Overview</h2>
         <p>
-          This NAS lives as a virtual machine on a Windows 11 Pro host. It serves as the main hub
-          for storing photography sets, website assets, project files, and backups. The goal is to
-          get the benefits of a dedicated NAS using existing hardware I had lying around. 
+          This NAS runs as a virtual machine on a Windows 11 Pro host. It acts as my central storage hub
+          for photography sets, website assets, project files, and backups. The goal was to get the benefits
+          of a dedicated NAS while using existing hardware and keeping the setup flexible for future upgrades.
         </p>
       </section>
 
       <section class="section-card">
         <h2>Host & VM Setup</h2>
         <p>
-		A system running an Intel Core i9-13900K with 96 GB DDR5 RAM, hosting virtual machines through Microsoft Hyper-V.        </p>
+          The host system is built around an <strong>Intel Core i9-13900K</strong> with
+          <strong>96 GB of DDR5 RAM</strong> and runs virtual machines using <strong>Microsoft Hyper-V</strong>.
+        </p>
         <p class="small-note">
-          Storage: Two 14 TB HDDs configured in RAID 1, providing drive-level redundancy.
-		Your virtual machines use dynamic VHDX disks, which grow as needed instead of reserving the full size immediately. This also makes the VHDX portable and easy to move
+          <strong>Storage:</strong> Two 14 TB HDDs are configured in <strong>RAID 1</strong> for drive-level redundancy.
+          The virtual machines use <strong>dynamic VHDX</strong> disks, which expand as needed instead of reserving
+          full size immediately. This makes VM storage easier to manage and portable if I need to migrate or restore.
         </p>
       </section>
 
       <section class="section-card">
         <h2>SMB Shares & Access</h2>
-       <p>
-		At the moment, all SMB access is restricted to a single user account—my primary Windows user, “Eric.” 
-		This ensures that only my authenticated devices can read or write to the NAS. 
-		In a corporate or enterprise environment, this would typically be integrated with Active Directory, 
-		allowing domain users and groups to manage access through centralized authentication. 
-		While I’m not using AD in my current homelab setup, the NAS is fully capable of supporting it.
-		
-		To access the files, I just mapped it as a network drive whose location is \\File\ on my local network, the IP I associated it with is 192.168.1.5 just incase.
-      </p>
+        <p>
+          At the moment, SMB access is restricted to a single user account—my primary Windows user,
+          <strong>“Eric”</strong>. This ensures only authenticated devices I control can read or write to the NAS.
+        </p>
+        <p>
+          In a corporate or enterprise environment, this would typically be integrated with
+          <strong>Active Directory</strong>, allowing domain users and groups to manage access through centralized
+          authentication. While I’m not using AD in my current homelab setup, the NAS is capable of supporting it.
+        </p>
+        <p class="small-note">
+          On Windows 11, I access the NAS by mapping a network drive using the UNC path <code>\\File\</code>.
+          The NAS is also reachable directly by IP at <code>192.168.1.5</code>.
+        </p>
       </section>
 
       <section class="section-card">
         <h2>Photos & Screenshots</h2>
         <div class="photo-grid">
-          <a class="photo-tile-small" href="assets/computers/nas/1.jpg" target="_blank">
-		<img src="assets/computers/nas/1.jpg" alt="Screenshot of how it views" loading="lazy">
+          <a class="photo-tile" href="assets/computers/nas/1.jpg" target="_blank" rel="noopener">
+            <img src="assets/computers/nas/1.jpg" alt="NAS screenshot 1" loading="lazy">
+          </a>
 
+          <!-- Add more screenshots like this:
+          <a class="photo-tile" href="assets/computers/nas/2.jpg" target="_blank" rel="noopener">
+            <img src="assets/computers/nas/2.jpg" alt="NAS screenshot 2" loading="lazy">
+          </a>
           -->
         </div>
         <p class="small-note">
@@ -76,15 +88,22 @@
 
       <section class="section-card">
         <h2>Issues & Lessons Learned</h2>
-		<p>
-      I ran into several performance issues when working with large photography files stored on my NAS. Because the NAS runs inside a virtual machine backed by mechanical hard drives, large images were slow to load, preview, and transfer over SMB. 
-	  Windows Explorer would often pause during file copies, causing network speeds to spike and then drop to zero before continuing. Accessing large folders of high-resolution photos also proved slow because SMB has to pull file metadata and thumbnails across the network, which created additional delays.
-       </p>
-
         <p>
-     These issues were ultimately the result of three factors working together: large file sizes, the inherent overhead of SMB, and the performance limitations of running a NAS inside a VM on spinning disks.
-     Once the storage layout was optimized and adjustments were made to how the NAS VM handled the virtual disk, performance improved and file access became much more responsive.
-     </p>
+          I ran into performance issues when working with large photography files stored on the NAS.
+          Because the NAS runs inside a virtual machine backed by mechanical hard drives, large images were
+          slow to load, preview, and transfer over SMB. Windows Explorer would often pause during file copies,
+          causing speeds to spike and then drop to zero before resuming.
+        </p>
+        <p>
+          Browsing large folders of high-resolution photos also added overhead because SMB must pull file metadata
+          and generate thumbnails across the network, which increased delays.
+        </p>
+        <p>
+          These issues came down to three factors working together: large file sizes, SMB overhead, and the performance
+          limitations of running a NAS inside a VM on spinning disks. After optimizing the storage layout and adjusting
+          how the NAS VM handled its virtual disk configuration, performance improved and file access became much more
+          responsive.
+        </p>
       </section>
     </main>
 
