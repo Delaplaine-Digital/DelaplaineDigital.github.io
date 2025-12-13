@@ -1,3 +1,30 @@
+/* ===========================
+   Delaplaine Digital Solutions
+   Dark + Teal Theme (Full CSS)
+   =========================== */
+
+/* Theme tokens (easy future edits) */
+:root{
+  --bg: #05060a;
+  --bg-2: #070913;
+  --text: #f5f5f7;
+  --muted: rgba(245,245,247,0.78);
+
+  --card-border: rgba(255,255,255,0.06);
+  --card-bg: rgba(255,255,255,0.02);
+
+  /* Teal/Slate accent (muted, professional) */
+  --accent: #5fa3b5;          /* teal */
+  --accent-2: #7aa2a9;        /* slate-teal */
+  --accent-soft: rgba(95,163,181,0.12);
+  --accent-border: rgba(95,163,181,0.35);
+
+  --link: #8fd7e6;            /* lighter teal for inline links */
+  --link-hover: #c7f1f6;
+
+  --shadow: rgba(0,0,0,0.65);
+}
+
 /* Global layout */
 * {
   box-sizing: border-box;
@@ -7,8 +34,8 @@
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #05060a;
-  color: #f5f5f7;
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.6;
 }
 
@@ -22,7 +49,7 @@ body {
 /* Header / Branding */
 .site-header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: radial-gradient(circle at top, #182848 0, #05060a 55%);
+  background: radial-gradient(circle at top, #1c2a2e 0%, var(--bg) 55%);
   padding: 1.25rem 1.75rem;
 }
 
@@ -58,23 +85,23 @@ body {
   padding: 0.4rem 0.85rem;
   border-radius: 999px;
   border: 1px solid transparent;
-  color: #e5e5f0;
+  color: rgba(229, 229, 240, 0.95);
   background: rgba(255, 255, 255, 0.02);
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
               transform 0.1s ease;
 }
 
 .nav-link:hover {
-  background: rgba(0, 209, 255, 0.12);
-  border-color: rgba(0, 209, 255, 0.35);
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
   color: #ffffff;
   transform: translateY(-1px);
 }
 
 .nav-link.active {
-  background: linear-gradient(135deg, #00d1ff, #5c7cff);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
   border-color: transparent;
-  color: #05060a;
+  color: var(--bg);
 }
 
 /* Main content */
@@ -93,16 +120,16 @@ main {
 
 .page-subtitle {
   font-size: 0.95rem;
-  opacity: 0.8;
+  opacity: 0.82;
   margin-bottom: 1.75rem;
 }
 
 /* Cards / sections */
 .section-card {
-  background: radial-gradient(circle at top left, rgba(0, 209, 255, 0.12), transparent 55%);
+  background: radial-gradient(circle at top left, rgba(95, 163, 181, 0.12), transparent 55%);
   border-radius: 18px;
   padding: 1.4rem 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--card-border);
   margin-bottom: 1.25rem;
 }
 
@@ -114,6 +141,19 @@ main {
 .section-card p {
   font-size: 0.95rem;
   opacity: 0.88;
+}
+
+/* Links inside content */
+.section-card a,
+main a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.section-card a:hover,
+main a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
 }
 
 /* Homepage grid */
@@ -128,14 +168,12 @@ main {
   background: radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 60%);
   border-radius: 18px;
   padding: 1.1rem 1.2rem;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--card-border);
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
   transition: border-color 0.2s ease, transform 0.15s ease;
 }
-
-
 
 /* Clickable project cards */
 .grid-card-link {
@@ -145,10 +183,9 @@ main {
 }
 
 .grid-card-link:hover .grid-card {
-  border-color: rgba(0, 209, 255, 0.5);
+  border-color: rgba(95, 163, 181, 0.45);
   transform: translateY(-1px);
 }
-
 
 .grid-card h3 {
   font-size: 1rem;
@@ -159,15 +196,17 @@ main {
   opacity: 0.85;
 }
 
+/* If you ever place inline links inside grid cards */
 .grid-card a {
   margin-top: 0.35rem;
   font-size: 0.85rem;
   text-decoration: none;
-  color: #8ae2ff;
+  color: var(--link);
 }
 
 .grid-card a:hover {
   text-decoration: underline;
+  color: var(--link-hover);
 }
 
 /* Small text / code paths */
@@ -180,9 +219,26 @@ main {
 code {
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.85em;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   padding: 0.15rem 0.3rem;
   border-radius: 6px;
+}
+
+/* Optional: nicer code blocks (works with <pre><code>...) */
+pre {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  overflow-x: auto;
+  margin-top: 0.5rem;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.85rem;
 }
 
 /* Footer */
@@ -192,6 +248,16 @@ code {
   font-size: 0.8rem;
   opacity: 0.7;
   text-align: center;
+}
+
+.site-footer a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
 }
 
 /* Responsive tweaks */
@@ -229,7 +295,7 @@ code {
 
 .photo-tile img {
   width: 100%;
-  height: 90px;                 /* even smaller thumbnails */
+  height: 90px;                 /* thumbnails */
   object-fit: cover;
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
@@ -239,6 +305,7 @@ code {
   opacity: 0.95;
 }
 
+/* Lightbox */
 .lightbox-backdrop {
   position: fixed;
   inset: 0;
@@ -269,19 +336,19 @@ code {
   opacity: 0.7;
 }
 
+/* Custom tile sizes for non-gallery pages */
 .photo-tile-small img {
-  width: 350px;        /* square width */
-  height: 350px;       /* square height */
-  object-fit: cover;   /* crops without distortion */
-  border-radius: 8px;  /* optional */
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 8px;
   display: block;
 }
 
 .photo-tile-rec img {
-  width: 400px;        /* square width */
-  height: 250px;       /* square height */
-  object-fit: cover;   /* crops without distortion */
-  border-radius: 8px;  /* optional */
+  width: 400px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
   display: block;
 }
-
