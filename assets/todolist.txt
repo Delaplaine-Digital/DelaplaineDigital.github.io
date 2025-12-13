@@ -11,10 +11,9 @@ Add part about commissions
 
 
 Computer Projects
-NAS File Server - Nas.html pictures
-OPNSENSE Firewall
+NAS File Server - Nas.html pictures (Pictures in github)
+OPNSENSE Firewall  -- Network Topography, Firewall Rules & Policies, Screenshots, Future Improvement
 Pihole delete
-Homelab 
 SOC SIM
 Malware Testing
 Python & Utility Scrips upload info on all scripts and info either on github or website

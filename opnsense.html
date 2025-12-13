@@ -26,38 +26,124 @@
     <main>
       <h1 class="page-title">OPNsense Firewall & Network Segmentation</h1>
       <p class="page-subtitle">
-        Using OPNsense to segment lab traffic, manage rules, and gain visibility into home network flows.
+        Deployed OPNsense as the edge firewall/router to centralize DHCP/DNS, eliminate double-NAT,
+        and lay the groundwork for VLANs, IDS/IPS, and SOC-style logging.
       </p>
+
+      <section class="section-card">
+        <h2>Overview</h2>
+        <p>
+          I rebuilt my home network around a firewall-first topology using OPNsense as the primary router and
+          security boundary. This provides a single enforcement point for routing, firewall rules, DHCP lease
+          management, and DNS resolution—while improving visibility into traffic flows for future monitoring
+          and security projects.
+        </p>
+        <p>
+          Wireless is handled by a Netgear Nighthawk RS300 configured strictly in Access Point mode, with a
+          reserved DHCP lease from OPNsense (<strong>192.168.1.2</strong>) to keep management access consistent
+          while maintaining centralized IP control.
+        </p>
+      </section>
 
       <section class="section-card">
         <h2>Network Topology</h2>
         <p>
-          Describe how the WAN, OPNsense box or VM, DD-WRT router (acting as a switch), and internal
-          network segments are wired together. You can include simple diagrams or list out interfaces
-          (WAN, LAN, lab, IoT, etc.).
+          OPNsense sits directly between the ISP gateway and the internal LAN to ensure all traffic is routed,
+          inspected, and logged in one place. The upstream gateway resides on a separate network
+          (<strong>192.168.100.0/24</strong>), and the internal LAN is on <strong>192.168.1.0/24</strong>.
+        </p>
+
+        <ul class="bullet-list">
+          <li><strong>Upstream Gateway:</strong> 192.168.100.1</li>
+          <li><strong>OPNsense LAN:</strong> 192.168.1.1 / 255.255.255.0</li>
+          <li><strong>Wireless Access Point (RS300):</strong> 192.168.1.2 (DHCP reservation)</li>
+          <li><strong>DHCP Scope:</strong> 192.168.1.10 – 192.168.1.254</li>
+        </ul>
+
+        <p class="small-note">
+          Diagram reference:
+          <code>/assets/computers/opnsense/1.png</code>
+        </p>
+
+        <div class="photo-grid">
+          <a class="photo-tile" href="assets/computers/opnsense/1.png" target="_blank">
+            <img src="assets/computers/opnsense/1.png" alt="Home network topology diagram (OPNsense firewall-first design)" loading="lazy">
+          </a>
+        </div>
+
+        <p class="small-note">
+          This design avoids double NAT, prevents competing DHCP servers, and makes troubleshooting easier by
+          keeping routing + policy enforcement centralized on OPNsense.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Core Services on OPNsense</h2>
+        <p>
+          After confirming the cabling and edge placement were correct, I migrated core network services to OPNsense
+          so the firewall controls addressing, name resolution, and traffic policy consistently across the network.
+        </p>
+
+        <h3 class="subheading">DHCP (Centralized Address Management)</h3>
+        <p>
+          DHCP is handled by OPNsense on the LAN interface with a defined scope for client devices. Infrastructure
+          devices (like the access point and homelab systems) use DHCP reservations to ensure stable management IPs
+          without manually configuring static addresses on each device.
+        </p>
+
+        <h3 class="subheading">DNS (Local Resolution + Cleaner Management)</h3>
+        <p>
+          DNS is configured so clients resolve through the firewall, enabling better visibility and cleaner troubleshooting.
+          This also supports future improvements like DNS filtering, internal hostnames, and policy-based DNS control.
         </p>
       </section>
 
       <section class="section-card">
         <h2>Firewall Rules & Policies</h2>
         <p>
-          Use this space to outline your ruleset: what can talk to what, how lab networks are isolated,
-          any logging policies, and how DNS (via Pi-hole) fits into the picture.
+          OPNsense enforces firewall policy at the network boundary, allowing me to control which networks and devices
+          can communicate, and to log/inspect traffic for security analysis. The baseline configuration prioritizes
+          stability and visibility, with planned tightening as segmentation expands.
+        </p>
+
+        <ul class="bullet-list">
+          <li><strong>Single enforcement point:</strong> All LAN traffic routes through OPNsense</li>
+          <li><strong>Logging visibility:</strong> Firewall logs used to review blocks, scans, and noisy clients</li>
+          <li><strong>Clean topology:</strong> Eliminated conflicts caused by multiple DHCP/NAT services</li>
+          <li><strong>Future segmentation ready:</strong> VLAN structure planned for lab/IoT/guest isolation</li>
+        </ul>
+
+        <p class="small-note">
+          Notes: As segmentation expands, rules will shift toward least-privilege (explicit allows between VLANs, default deny where appropriate).
         </p>
       </section>
 
       <section class="section-card">
         <h2>Screenshots & Diagrams</h2>
         <p class="small-note">
-          Store related images under <code>/assets/computers/opnsense/</code> and add them below.
+          Store related images under <code>/assets/computers/opnsense/</code>. Click any image to open full size.
         </p>
+
         <div class="photo-grid">
-          <!--
-          <a class="photo-tile" href="assets/computers/opnsense/1.jpg" target="_blank">
-            <img src="assets/computers/opnsense/1.jpg" alt="OPNsense dashboard" loading="lazy">
+
+
+          <a class="photo-tile" href="assets/computers/opnsense/2.png" target="_blank">
+            <img src="assets/computers/opnsense/2.png" alt="OPNsense dashboard showing system health and interface status" loading="lazy">
           </a>
-          -->
+
+
+
+          <a class="photo-tile" href="assets/computers/opnsense/3.png" target="_blank">
+            <img src="assets/computers/opnsense/3.png" alt="OPNsense DHCP static mappings showing infrastructure reservations (including AP at 192.168.1.2)" loading="lazy">
+          </a>
+
+
+          <a class="photo-tile" href="assets/computers/opnsense/4.png" target="_blank">
+            <img src="assets/computers/opnsense/4.png" alt="OPNsense firewall live view showing allowed and blocked traffic" loading="lazy">
+          </a>
+
         </div>
+
         <p class="small-note">
           © Delaplaine Digital Solutions — All images on this page are copyrighted.
         </p>
@@ -65,10 +151,13 @@
 
       <section class="section-card">
         <h2>Future Improvements</h2>
-        <p>
-          Ideas like adding VPN, intrusion detection, better VLAN structure, or more detailed logging
-          can go here.
-        </p>
+        <ul class="bullet-list">
+          <li><strong>VLAN segmentation:</strong> Separate trusted LAN, lab, IoT, and guest Wi-Fi networks</li>
+          <li><strong>IDS/IPS:</strong> Enable Suricata in alert-first mode, then tune and harden</li>
+          <li><strong>DNS filtering:</strong> Add blocklists or integrate Pi-hole/AdGuard for network-wide filtering</li>
+          <li><strong>Remote access:</strong> VPN for secure access to internal services when off-site</li>
+          <li><strong>Monitoring:</strong> Centralize logs and build a small SOC-style monitoring workflow</li>
+        </ul>
       </section>
     </main>
 
