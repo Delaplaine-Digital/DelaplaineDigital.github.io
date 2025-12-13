@@ -1,53 +1,62 @@
-/* ===========================
+/* ======================================================
    Delaplaine Digital Solutions
-   Dark + Amber Theme (Full CSS)
-   =========================== */
+   Dark Professional Theme w/ Muted Teal Accents
+   ====================================================== */
 
-/* Theme tokens (easy future edits) */
-:root{
+/* ---------- Theme Variables (edit here later) ---------- */
+:root {
   --bg: #05060a;
+  --bg-soft: #0b0f14;
+
   --text: #f5f5f7;
-  --muted: rgba(245,245,247,0.78);
+  --text-muted: rgba(245,245,247,0.78);
 
-  --card-border: rgba(255,255,255,0.06);
+  --border-soft: rgba(255,255,255,0.08);
+  --border-hover: rgba(95,163,181,0.35);
 
-  /* Amber accent (warm maker/engineering vibe) */
-  --accent: #f59e0b;            /* amber */
-  --accent-2: #fbbf24;          /* amber-light */
-  --accent-soft: rgba(251,191,36,0.14);
-  --accent-border: rgba(251,191,36,0.40);
+  --card-bg: rgba(255,255,255,0.035);
+  --card-shadow: rgba(0,0,0,0.45);
 
-  --link: #ffd08a;
-  --link-hover: #ffe3b8;
+  /* Muted teal – not neon */
+  --accent: #5fa3b5;
+  --accent-soft: rgba(95,163,181,0.12);
 
-  --shadow: rgba(0,0,0,0.65);
+  --link: #9fd7e4;
+  --link-hover: #d5f1f6;
 }
 
-/* Global layout */
+/* ---------- Global Reset ---------- */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* ---------- Page Background ---------- */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg);
+  background:
+    radial-gradient(900px 500px at 10% -10%, rgba(255,255,255,0.05), transparent 60%),
+    radial-gradient(700px 500px at 90% 10%, rgba(255,255,255,0.04), transparent 55%),
+    var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.65;
+  letter-spacing: 0.2px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Wrapper */
+/* ---------- Wrapper ---------- */
 .site-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Header / Branding */
+/* ---------- Header ---------- */
 .site-header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: radial-gradient(circle at top, #2a1f14 0%, var(--bg) 55%);
+  border-bottom: 1px solid var(--border-soft);
+  background: radial-gradient(circle at top, #1c2a2e 0%, var(--bg) 60%);
   padding: 1.25rem 1.75rem;
 }
 
@@ -58,9 +67,9 @@ body {
 }
 
 .brand-title {
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -69,9 +78,9 @@ body {
   opacity: 0.75;
 }
 
-/* Nav */
+/* ---------- Navigation ---------- */
 .navbar {
-  margin-top: 0.75rem;
+  margin-top: 0.85rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -80,109 +89,104 @@ body {
 .nav-link {
   text-decoration: none;
   font-size: 0.9rem;
-  padding: 0.4rem 0.85rem;
+  padding: 0.45rem 0.95rem;
   border-radius: 999px;
   border: 1px solid transparent;
-  color: rgba(229, 229, 240, 0.95);
-  background: rgba(255, 255, 255, 0.02);
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
-              transform 0.1s ease;
+  color: rgba(229,229,240,0.95);
+  background: rgba(255,255,255,0.025);
+  transition: all 0.18s ease;
 }
 
 .nav-link:hover {
   background: var(--accent-soft);
-  border-color: var(--accent-border);
-  color: #ffffff;
+  border-color: var(--border-hover);
   transform: translateY(-1px);
 }
 
 .nav-link.active {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  border-color: transparent;
+  background: linear-gradient(135deg, var(--accent), #7fb9c5);
   color: var(--bg);
+  border-color: transparent;
 }
 
-/* Main content */
+/* ---------- Main Content ---------- */
 main {
   flex: 1;
-  padding: 2rem 1.5rem 2.5rem;
+  padding: 2.2rem 1.6rem 2.8rem;
   max-width: 980px;
   width: 100%;
   margin: 0 auto;
 }
 
 .page-title {
-  font-size: 2rem;
-  margin-bottom: 0.35rem;
+  font-size: 2.1rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
 }
 
 .page-subtitle {
   font-size: 0.95rem;
   opacity: 0.82;
-  margin-bottom: 1.75rem;
+  max-width: 70ch;
+  margin-bottom: 1.8rem;
 }
 
-/* Cards / sections */
-.section-card {
-  background: radial-gradient(circle at top left, rgba(251,191,36,0.12), transparent 55%);
+/* ---------- Cards / Sections ---------- */
+.section-card,
+.grid-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-soft);
   border-radius: 18px;
-  padding: 1.4rem 1.5rem;
-  border: 1px solid var(--card-border);
-  margin-bottom: 1.25rem;
+  padding: 1.45rem 1.55rem;
+  box-shadow: 0 14px 34px var(--card-shadow);
+  margin-bottom: 1.3rem;
+  position: relative;
+}
+
+/* subtle divider line */
+.section-card::before,
+.grid-card::before {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  margin-bottom: 0.9rem;
 }
 
 .section-card h2 {
-  font-size: 1.15rem;
-  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.6rem;
 }
 
 .section-card p {
   font-size: 0.95rem;
-  opacity: 0.88;
+  opacity: 0.9;
 }
 
-/* Links inside content */
-.section-card a,
-main a {
-  color: var(--link);
-  text-decoration: none;
-}
-
-.section-card a:hover,
-main a:hover {
-  color: var(--link-hover);
-  text-decoration: underline;
-}
-
-/* Homepage grid */
+/* ---------- Grid ---------- */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+  gap: 1.1rem;
   margin-top: 0.5rem;
 }
 
 .grid-card {
-  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 60%);
-  border-radius: 18px;
-  padding: 1.1rem 1.2rem;
-  border: 1px solid var(--card-border);
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  transition: border-color 0.2s ease, transform 0.15s ease;
+  transition: transform 0.14s ease, border-color 0.14s ease;
 }
 
-/* Clickable project cards */
 .grid-card-link {
-  display: block;
   text-decoration: none;
   color: inherit;
+  display: block;
 }
 
 .grid-card-link:hover .grid-card {
-  border-color: rgba(251,191,36,0.45);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  border-color: var(--border-hover);
 }
 
 .grid-card h3 {
@@ -194,78 +198,59 @@ main a:hover {
   opacity: 0.85;
 }
 
-/* If you ever place inline links inside grid cards */
-.grid-card a {
-  margin-top: 0.35rem;
-  font-size: 0.85rem;
-  text-decoration: none;
+/* ---------- Links ---------- */
+a {
   color: var(--link);
+  text-decoration: none;
 }
 
-.grid-card a:hover {
-  text-decoration: underline;
+a:hover {
   color: var(--link-hover);
+  text-decoration: underline;
 }
 
-/* Small text / code paths */
+/* ---------- Small Text ---------- */
 .small-note {
   font-size: 0.8rem;
   opacity: 0.7;
   margin-top: 0.35rem;
 }
 
+/* ---------- Code ---------- */
 code {
-  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 0.85em;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255,255,255,0.06);
   padding: 0.15rem 0.3rem;
   border-radius: 6px;
 }
 
-/* Optional: nicer code blocks (works with <pre><code>...) */
 pre {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255,255,255,0.045);
+  border: 1px solid var(--border-soft);
   border-radius: 12px;
-  padding: 0.85rem 1rem;
+  padding: 0.9rem 1rem;
   overflow-x: auto;
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
 }
 
-pre code {
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
-  font-size: 0.85rem;
-}
-
-/* Footer */
+/* ---------- Footer ---------- */
 .site-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 0.9rem 1.5rem 1.4rem;
+  border-top: 1px solid var(--border-soft);
+  padding: 1rem 1.6rem 1.5rem;
   font-size: 0.8rem;
   opacity: 0.7;
   text-align: center;
 }
 
-.site-footer a {
-  color: var(--link);
-  text-decoration: none;
-}
-
-.site-footer a:hover {
-  color: var(--link-hover);
-  text-decoration: underline;
-}
-
-/* Responsive tweaks */
+/* ---------- Responsive ---------- */
 @media (max-width: 640px) {
   .site-header {
     padding: 1rem 1.1rem;
   }
 
   main {
-    padding: 1.5rem 1.1rem 2rem;
+    padding: 1.6rem 1.1rem 2rem;
   }
 
   .brand-title {
@@ -273,41 +258,38 @@ pre code {
   }
 }
 
-/* Photo grid */
+/* ---------- Photo Grid ---------- */
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 0.35rem;
-  margin-top: 0.75rem;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
 }
 
 .photo-tile {
-  position: relative;
   overflow: hidden;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.02);
-  display: block;               /* it's an <a> now */
-  text-decoration: none;        /* no underline */
+  border: 1px solid var(--border-soft);
+  background: rgba(255,255,255,0.02);
 }
 
 .photo-tile img {
   width: 100%;
-  height: 90px;                 /* thumbnails */
+  height: 90px;
   object-fit: cover;
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 .photo-tile:hover img {
-  transform: scale(1.04);
+  transform: scale(1.05);
   opacity: 0.95;
 }
 
-/* Lightbox */
+/* ---------- Lightbox ---------- */
 .lightbox-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0,0,0,0.9);
   display: none;
   align-items: center;
   justify-content: center;
@@ -322,7 +304,7 @@ pre code {
   max-width: 90vw;
   max-height: 90vh;
   border-radius: 14px;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.8);
 }
 
 .lightbox-hint {
@@ -334,19 +316,15 @@ pre code {
   opacity: 0.7;
 }
 
-/* Custom tile sizes for non-gallery pages */
+/* ---------- Custom Image Sizes ---------- */
 .photo-tile-small img {
   width: 350px;
   height: 350px;
   object-fit: cover;
-  border-radius: 8px;
-  display: block;
 }
 
 .photo-tile-rec img {
   width: 400px;
   height: 250px;
   object-fit: cover;
-  border-radius: 8px;
-  display: block;
 }
