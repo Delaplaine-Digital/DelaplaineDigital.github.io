@@ -31,24 +31,64 @@
 
       <section class="section-card">
         <h2>Host Hardware</h2>
-        <p>
-          Document the CPU, RAM, storage layout, and any special hardware in the homelab machine.
-          This is useful context for performance and future expansion.
-        </p>
+		<p>
+			The homelab is built on a compact but high-performance platform designed to support
+			virtualization, storage, and future expansion. It is housed in a
+			<strong>Fractal Design Node 804</strong> case and powered by a
+			<strong>GIGABYTE Z790M AORUS Elite AX ICE</strong> motherboard paired with an
+			<strong>Intel Core i9-13900K</strong>. The system is equipped with
+			<strong>64 GB of CORSAIR VENGEANCE DDR5 RAM</strong>, providing ample memory for
+			running multiple virtual machines and lab workloads simultaneously.
+		</p>
+
+		<p>
+			The operating system runs from a dedicated
+		<strong>Crucial P3 1 TB NVMe</strong> drive to keep host performance isolated from
+			storage workloads. Data storage is segmented across multiple mirrored arrays for
+			redundancy and reliability: two <strong>Crucial P3 1 TB NVMe drives in RAID 1</strong>
+			for fast VM and lab data, two <strong>Seagate IronWolf 4 TB NAS drives in RAID 1</strong>
+			for general network storage, and two <strong>Seagate IronWolf Pro 14 TB drives in RAID 1</strong>
+			for large media and archival data. An additional pair of
+		<strong>Seagate Exos X12 12 TB drives</strong> is available for future expansion and
+			capacity growth.
+		</p>
+
       </section>
 
       <section class="section-card">
         <h2>Virtualization Setup</h2>
         <p>
-          Describe your hypervisor choice, how VMs are structured (NAS, OPNsense, Pi-hole,
-          SOC tools, malware lab, etc.), and how resources are split between them.
-        </p>
+ 		 The lab is virtualized using <strong>Microsoft Hyper-V</strong>, with each service
+ 		 deployed as its own virtual machine to maintain isolation and simplify management.
+ 		 Every VM is assigned a dedicated virtual hard disk, typically using
+ 		 <strong>dynamically expanding VHDs</strong> to conserve storage while still allowing
+ 		 for growth as workloads increase.
+		</p>
+
+		<p>
+ 		 Resources are allocated based on the role of each system. Virtual machines are
+ 		 connected to the appropriate <strong>virtual network adapters</strong> depending on
+ 		 their function (for example, internal services versus perimeter-facing systems),
+  		allowing network traffic to be segmented and controlled. Storage placement is also
+  		intentional: performance-sensitive VMs and lab tools are hosted on the
+  		<strong>RAID 1 NVMe arrays</strong> for speed and responsiveness, while the
+ 		 <strong>NAS virtual machine resides on dedicated HDD storage</strong>, where capacity
+ 		 and reliability are prioritized over raw I/O performance.
+		</p>
+
+		<p>
+ 		 Older <strong>12 TB Seagate Exos</strong> drives are not currently in production use;
+ 		 one drive has failed, and the remaining disk is retained only for testing and
+ 		 performance evaluation. This keeps the active lab environment focused on stable,
+  		known-good storage hardware.
+		</p>
+
       </section>
 
       <section class="section-card">
         <h2>VM Inventory & Roles</h2>
         <p>
-          Use this area to list each VM, what it does, and any notes (RAM/CPU allocation,
+          This area is under construction to list each VM, what it does, and any notes (RAM/CPU allocation,
           storage usage, network interfaces).
         </p>
       </section>
@@ -56,15 +96,17 @@
       <section class="section-card">
         <h2>Screenshots & Diagrams</h2>
         <p class="small-note">
-          Store images under <code>/assets/computers/homelab/</code> and add them below.
-        </p>
+
         <div class="photo-grid">
-          <!--
-          <a class="photo-tile" href="assets/computers/homelab/1.jpg" target="_blank">
-            <img src="assets/computers/homelab/1.jpg" alt="Hypervisor or VM list" loading="lazy">
-          </a>
-          -->
+          <a class="photo-tile-small" href="assets/computers/homelab/1.jpg" target="_blank">
+		<img src="assets/computers/homelab/1.jpg" alt="Exterior Side" loading="lazy">
+		   <div class="photo-grid">
+          <a class="photo-tile-small" href="assets/computers/homelab/2.jpg" target="_blank">
+		<img src="assets/computers/homelab/2.jpg" alt="Other Exterior Side" loading="lazy">
         </div>
+		        <div class="photo-grid">
+          <a class="photo-tile-small" href="assets/computers/homelab/3.jpg" target="_blank">
+		<img src="assets/computers/homelab/3.jpg" alt="Under Desk" loading="lazy">
         <p class="small-note">
           © Delaplaine Digital Solutions — All images on this page are copyrighted.
         </p>
