@@ -1,26 +1,24 @@
 /* ===========================
    Delaplaine Digital Solutions
-   Dark + Teal Theme (Full CSS)
+   Dark + Amber Theme (Full CSS)
    =========================== */
 
 /* Theme tokens (easy future edits) */
 :root{
   --bg: #05060a;
-  --bg-2: #070913;
   --text: #f5f5f7;
   --muted: rgba(245,245,247,0.78);
 
   --card-border: rgba(255,255,255,0.06);
-  --card-bg: rgba(255,255,255,0.02);
 
-  /* Teal/Slate accent (muted, professional) */
-  --accent: #5fa3b5;          /* teal */
-  --accent-2: #7aa2a9;        /* slate-teal */
-  --accent-soft: rgba(95,163,181,0.12);
-  --accent-border: rgba(95,163,181,0.35);
+  /* Amber accent (warm maker/engineering vibe) */
+  --accent: #f59e0b;            /* amber */
+  --accent-2: #fbbf24;          /* amber-light */
+  --accent-soft: rgba(251,191,36,0.14);
+  --accent-border: rgba(251,191,36,0.40);
 
-  --link: #8fd7e6;            /* lighter teal for inline links */
-  --link-hover: #c7f1f6;
+  --link: #ffd08a;
+  --link-hover: #ffe3b8;
 
   --shadow: rgba(0,0,0,0.65);
 }
@@ -49,7 +47,7 @@ body {
 /* Header / Branding */
 .site-header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: radial-gradient(circle at top, #1c2a2e 0%, var(--bg) 55%);
+  background: radial-gradient(circle at top, #2a1f14 0%, var(--bg) 55%);
   padding: 1.25rem 1.75rem;
 }
 
@@ -126,7 +124,7 @@ main {
 
 /* Cards / sections */
 .section-card {
-  background: radial-gradient(circle at top left, rgba(95, 163, 181, 0.12), transparent 55%);
+  background: radial-gradient(circle at top left, rgba(251,191,36,0.12), transparent 55%);
   border-radius: 18px;
   padding: 1.4rem 1.5rem;
   border: 1px solid var(--card-border);
@@ -183,7 +181,7 @@ main a:hover {
 }
 
 .grid-card-link:hover .grid-card {
-  border-color: rgba(95, 163, 181, 0.45);
+  border-color: rgba(251,191,36,0.45);
   transform: translateY(-1px);
 }
 
