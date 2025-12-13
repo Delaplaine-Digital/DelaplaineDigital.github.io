@@ -277,3 +277,11 @@ code {
   display: block;
 }
 
+.photo-tile-rec img {
+  width: 400px;        /* square width */
+  height: 250px;       /* square height */
+  object-fit: cover;   /* crops without distortion */
+  border-radius: 8px;  /* optional */
+  display: block;
+}
+
