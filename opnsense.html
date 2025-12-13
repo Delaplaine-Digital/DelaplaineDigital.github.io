@@ -117,6 +117,31 @@
           Notes: As segmentation expands, rules will shift toward least-privilege (explicit allows between VLANs, default deny where appropriate).
         </p>
       </section>
+	  
+	  <section class="section-card">
+		<h2>Management Access: HTTP vs HTTPS</h2>
+		<p>
+			HTTPS enforcement on the firewall management interface was intentionally not enabled in this deployment.
+			While HTTPS is generally recommended for web services, firewall management interfaces are treated
+			differently due to their role as critical infrastructure devices.
+		</p>
+		<p>
+			Firewall availability and recoverability take priority over transport-level encryption. Enforcing HTTPS
+			exclusively—especially when using self-signed certificates—can introduce lockout scenarios during
+			certificate expiration, browser compatibility changes, time drift, or interface misconfiguration.
+			In these cases, requiring HTTPS can prevent administrative access when it is most needed.
+		</p>
+		<p>
+			Management access to OPNsense is restricted to the trusted internal LAN and is not exposed to the WAN.
+			Access control is enforced through network placement, interface binding, and authentication rather than
+			relying solely on transport encryption. This approach aligns with real-world firewall best practices,
+			where management access is protected by network policy and physical access controls.
+		  </p>
+		  <p class="small-note">
+			HTTPS enforcement may be enabled in the future when management is isolated to a dedicated VLAN or accessed
+			remotely via VPN with a trusted certificate authority in place.
+		  </p>
+		</section>
 
       <section class="section-card">
         <h2>Screenshots & Diagrams</h2>
