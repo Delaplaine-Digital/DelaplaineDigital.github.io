@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home Network Video Recorder System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-title">Delaplaine Digital Solutions</div>
+        <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+      </div>
+      <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="photography.html" class="nav-link">Photography</a>
+        <a href="vehicles.html" class="nav-link">Vehicles</a>
+        <a href="computer-projects.html" class="nav-link active">Computer Projects</a>
+        <a href="printing.html" class="nav-link">3D Printing</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="page-title">Home Network Video Recorder System</h1>
+      <p class="page-subtitle">
+        A self-hosted NVR project built around Frigate, PoE cameras, reverse proxy access, and an isolated camera network using a second NIC on my homelab server.
+      </p>
+
+      <section class="section-card">
+        <h2>Project Overview</h2>
+        <p>
+          This project was built to create a local-first home camera system that does not rely on vendor cloud services for day-to-day use. I wanted a setup that would let me monitor my driveway and entry area, record footage locally, and access the system securely through my own network while away from home.
+        </p>
+        <p>
+          The final system uses Reolink PoE cameras, Frigate running in an Ubuntu virtual machine, OPNsense for routing and VPN access, and NGINX with Unbound DNS for clean internal URLs. Instead of placing the cameras directly on my normal LAN, I used a second network interface card on my homelab server to create a separate camera-only network.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Goals</h2>
+        <p>
+          The main goals of this build were simple: keep the cameras off the main network, store video locally, avoid exposing the cameras directly to the internet, and create a clean way to access Frigate from both inside the house and remotely through VPN.
+        </p>
+        <ul>
+          <li>Run a local NVR with Frigate</li>
+          <li>Use PoE cameras for simple cabling and reliable power</li>
+          <li>Keep cameras isolated from the main LAN</li>
+          <li>Store footage on dedicated VM-attached storage</li>
+          <li>Access Frigate through a clean internal domain name</li>
+          <li>Use VPN through OPNsense for remote viewing instead of public exposure</li>
+        </ul>
+      </section>
+
+      <section class="section-card">
+        <h2>Hardware & Core Components</h2>
+        <p>
+          The NVR runs on my homelab server in Hyper-V. Frigate is hosted in an Ubuntu Server VM, while the cameras connect to a small TP-Link PoE switch. Rather than relying on my bridged router and main LAN path for the camera side of the project, I used a second physical NIC on the homelab server to create a separate network dedicated to the cameras.
+        </p>
+        <ul>
+          <li><strong>Homelab host:</strong> Windows system running Hyper-V</li>
+          <li><strong>Frigate host:</strong> Ubuntu Server virtual machine</li>
+          <li><strong>Cameras:</strong> Reolink RLC-520A PoE turret cameras</li>
+          <li><strong>PoE switch:</strong> TP-Link TL-SF1005P</li>
+          <li><strong>Firewall / router:</strong> OPNsense</li>
+          <li><strong>Internal DNS:</strong> Unbound DNS on OPNsense</li>
+          <li><strong>Reverse proxy:</strong> NGINX on OPNsense</li>
+        </ul>
+      </section>
+
+      <section class="section-card">
+        <h2>Network Design</h2>
+        <p>
+          One of the most important parts of this project was keeping the cameras separated from the normal home network. My OPNsense box only has two physical ports in use for WAN and LAN, so instead of adding a managed switch and building out VLANs right away, I used the second NIC on my homelab server to physically isolate the cameras.
+        </p>
+        <p>
+          The Frigate VM uses two network paths:
+        </p>
+        <ul>
+          <li><strong>eth0:</strong> Main LAN access for the web interface and normal management</li>
+          <li><strong>eth1:</strong> Camera-only network connected to the PoE switch</li>
+        </ul>
+        <p>
+          The cameras were moved onto a dedicated <code>192.168.30.0/24</code> network. The Frigate VM was configured with <code>192.168.30.1</code> on the second interface, and each camera was manually moved over to that subnet with static addresses.
+        </p>
+        <ul>
+          <li><strong>Driveway camera:</strong> <code>192.168.30.102</code></li>
+          <li><strong>Front door camera:</strong> <code>192.168.30.101</code></li>
+        </ul>
+        <p>
+          To prevent the camera network from routing anywhere else, IP forwarding was disabled on the Ubuntu VM. This means the cameras can talk to Frigate, but they do not have a path out to the internet or back into the normal LAN through the VM.
+        </p>
+
+        <div class="image-grid">
+          <figure class="project-image">
+            <img src="assets/computers/nvr/1.png" alt="Diagram of the Frigate NVR network layout with OPNsense, homelab server, second NIC, PoE switch, and cameras." />
+            <figcaption>Example network diagram showing the camera-only network and Frigate VM layout.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <h2>Frigate VM Build</h2>
+        <p>
+          Frigate was installed inside its own Ubuntu VM so the NVR system would remain separated from my other services. I created the VM in Hyper-V, installed Docker and Docker Compose, and then deployed Frigate from a compose file. During setup, Frigate was eventually changed to use host networking so it could talk cleanly to both NICs from inside the VM.
+        </p>
+        <p>
+          I started by testing Frigate with a minimal config, then added the first camera once RTSP access was confirmed. After that, I expanded the config to support both the low-resolution detection stream and the full-resolution recording stream.
+        </p>
+        <ul>
+          <li>Ubuntu Server VM dedicated to Frigate</li>
+          <li>Docker-based deployment</li>
+          <li>Host networking for clean access to both LAN and camera subnet</li>
+          <li>go2rtc restreaming used inside Frigate for stable RTSP handling</li>
+        </ul>
+      </section>
+
+      <section class="section-card">
+        <h2>Camera Setup & RTSP Configuration</h2>
+        <p>
+          Each Reolink camera was initially configured on the normal network so it could be accessed through the browser and app. From there, I created user credentials, confirmed RTSP functionality, set stream settings, and then moved the cameras over to the isolated <code>192.168.30.x</code> network.
+        </p>
+        <p>
+          Frigate was configured to use the substream for detection and the main stream for recording. This keeps detection efficient while still saving better quality video.
+        </p>
+        <ul>
+          <li><strong>Main stream:</strong> full-resolution recording stream</li>
+          <li><strong>Substream:</strong> lower-resolution stream for detection</li>
+          <li><strong>Protocol:</strong> RTSP via go2rtc</li>
+          <li><strong>Object tracking:</strong> currently focused on people and vehicles</li>
+        </ul>
+
+        <div class="image-grid">
+          <figure class="project-image">
+            <img src="assets/computers/nvr/2.png" alt="Screenshot of the Reolink camera web interface showing stream and RTSP settings." />
+            <figcaption>Camera-side configuration and stream settings used for Frigate.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <h2>Storage & Recording</h2>
+        <p>
+          The Frigate VM originally had only a small OS disk, so I created and attached a separate virtual hard disk for video storage. Inside Ubuntu, the new disk was formatted, mounted at <code>/mnt/frigate</code>, and mapped into the Frigate container so recordings and clips would not fill the operating system drive.
+        </p>
+        <p>
+          Recording retention was then configured inside Frigate so the system saves useful footage while remaining manageable on the current storage allocation. This makes it easy to expand later when I dedicate more disk space to the NVR.
+        </p>
+        <ul>
+          <li><strong>OS disk:</strong> kept separate from recordings</li>
+          <li><strong>Recording mount point:</strong> <code>/mnt/frigate</code></li>
+          <li><strong>Container mapping:</strong> <code>/media/frigate</code></li>
+          <li><strong>Frigate folders created:</strong> recordings, clips, exports</li>
+        </ul>
+
+        <div class="image-grid">
+          <figure class="project-image">
+            <img src="assets/computers/nvr/3.png" alt="Screenshot showing the Frigate recording storage mount and folder structure inside Ubuntu." />
+            <figcaption>Dedicated Frigate storage mounted separately from the VM operating system disk.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <h2>Internal DNS & Reverse Proxy</h2>
+        <p>
+          Once Frigate was working by IP and port, I cleaned up access by adding internal DNS entries in Unbound on OPNsense and then placing NGINX in front of the service. This allows me to access Frigate using a cleaner internal address instead of remembering the raw port number.
+        </p>
+        <p>
+          I configured the reverse proxy so Frigate is available at:
+        </p>
+        <p>
+          <code>frigate.home.arpa</code>
+        </p>
+        <p>
+          I also created a similar internal route for LubeLogger. This made the services easier to use from desktops, laptops, and my phone while connected through VPN.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Remote Access</h2>
+        <p>
+          Remote access is handled through a VPN connection to OPNsense rather than exposing the cameras or Frigate directly to the internet. This keeps the camera side of the project private while still allowing me to view live feeds and recorded clips from my phone when away from home.
+        </p>
+        <p>
+          This design keeps the attack surface small and lets internal DNS and reverse proxy rules continue working the same way whether I am on-site or connected through VPN.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Why I Built It This Way</h2>
+        <p>
+          A lot of consumer camera systems push cloud-based access and broad network exposure by default. I wanted something more controlled. By using a second NIC on the homelab server, isolating the cameras on their own subnet, keeping recordings local, and accessing everything through OPNsense and VPN, I ended up with a design that is far cleaner and more secure than simply dropping cameras onto the normal home network.
+        </p>
+        <p>
+          This project also gives me a solid foundation to build on later, whether that means adding more cameras, refining Frigate object detection, expanding storage, or integrating the system into a larger home lab automation stack.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Future Improvements</h2>
+        <p>
+          The current build already works well, but it also leaves room for later upgrades. Possible next steps include adding more storage, refining object detection and zones, adding another camera, and integrating Frigate with other self-hosted tools for more advanced automation.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Delaplaine Digital Solutions.</div>
+      <div>All images and content on this website are copyrighted and owned by Delaplaine Digital Solutions.</div>
+      <div>
+        For licensing, usage permissions, or other inquiries, please contact
+        <a href="mailto:Eric@delaplainedigital.com">Eric@delaplainedigital.com</a>.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <script src="script.js?v=1"></script>
+</body>
+</html>
