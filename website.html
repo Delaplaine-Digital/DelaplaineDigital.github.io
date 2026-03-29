@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Website Architecture & Deployment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-title">Delaplaine Digital Solutions</div>
+        <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+      </div>
+      <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="photography.html" class="nav-link">Photography</a>
+        <a href="vehicles.html" class="nav-link">Vehicles</a>
+        <a href="computer-projects.html" class="nav-link active">Computer Projects</a>
+        <a href="printing.html" class="nav-link">3D Printing</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="page-title">Website Architecture & Deployment</h1>
+      <p class="page-subtitle">
+        A technical breakdown of how I designed, structured, hosted, and deployed this website using static HTML, CSS, custom DNS configuration, and GitHub Pages.
+      </p>
+
+      <section class="section-card">
+        <h2>Project Overview</h2>
+        <p>
+          I built this website as a custom portfolio and business presence for Delaplaine Digital Solutions. Rather than using a website builder or a heavy framework, I wanted a site that I fully understood and controlled from top to bottom.
+        </p>
+        <p>
+          The goal was to create a clean, lightweight, professional website that could showcase my photography, vehicle projects, computer projects, and 3D printing work while also serving as an example of my technical ability. This project includes manual page design, asset organization, GitHub-based deployment, domain configuration, and performance-focused decisions for image-heavy content.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Goals</h2>
+        <p>
+          From the start, I wanted the site to be simple, fast, and easy to maintain without depending on unnecessary plugins or bloated tools.
+        </p>
+        <ul>
+          <li>Build a custom website using HTML, CSS, and light JavaScript</li>
+          <li>Create a professional online presence for Delaplaine Digital Solutions</li>
+          <li>Host the site reliably using GitHub Pages</li>
+          <li>Connect a custom domain for a polished public-facing presence</li>
+          <li>Keep the design lightweight for performance and easier troubleshooting</li>
+          <li>Organize images and project pages in a way that scales as more content is added</li>
+        </ul>
+      </section>
+
+      <section class="section-card">
+        <h2>Core Technologies</h2>
+        <p>
+          This website was intentionally built with a simple stack. I chose static HTML and CSS because they provide full control, low overhead, and a smaller attack surface than many dynamic website platforms.
+        </p>
+        <ul>
+          <li><strong>Frontend:</strong> HTML, CSS, and lightweight JavaScript</li>
+          <li><strong>Hosting:</strong> GitHub Pages</li>
+          <li><strong>Domain provider:</strong> Namecheap</li>
+          <li><strong>Version control:</strong> Git and GitHub</li>
+          <li><strong>Image organization:</strong> manually structured asset folders and thumbnails</li>
+        </ul>
+      </section>
+
+      <section class="section-card">
+        <h2>Site Structure & Organization</h2>
+        <p>
+          One of the most important parts of this build was organizing the site so it would be easy to expand over time. Instead of treating it like a single-page portfolio, I structured it around separate sections for photography, vehicles, computer projects, 3D printing, and supporting pages like About.
+        </p>
+        <p>
+          I also organized images into dedicated asset folders so the site would stay manageable as more photos and project screenshots were added.
+        </p>
+        <ul>
+          <li><strong>Main pages:</strong> Home, Photography, Vehicles, Computer Projects, 3D Printing, About</li>
+          <li><strong>Project pages:</strong> individual write-ups for technical builds and experiments</li>
+          <li><strong>Image folders:</strong> separated by category for easier updates and cleaner links</li>
+          <li><strong>Thumbnail folders:</strong> used to improve load times on image-heavy pages</li>
+        </ul>
+
+        <div class="image-grid">
+          <figure class="project-image">
+            <img src="assets/computers/website/1.png" alt="Screenshot showing the structure of the Delaplaine Digital Solutions website homepage or navigation layout." />
+            <figcaption>General layout and navigation structure of the website.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <h2>Design Approach</h2>
+        <p>
+          I wanted the site to have a dark, modern look while remaining readable and professional. The design focuses on strong contrast, simple navigation, consistent project cards, and enough flexibility to support both visual galleries and technical write-ups.
+        </p>
+        <p>
+          Rather than relying on templates, I built the styling around reusable sections such as navigation bars, project cards, image grids, subtitles, and footer elements. This made it easier to keep the site visually consistent across multiple pages while still allowing each page to have its own content and layout.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Hosting & Deployment</h2>
+        <p>
+          The website is hosted through GitHub Pages, which provides a simple and reliable way to deploy a static site directly from a GitHub repository. This made it easy to update pages, push changes, and keep the site version-controlled.
+        </p>
+        <p>
+          Each update is made locally, committed through Git, and then pushed to the repository, where GitHub Pages publishes the updated version. This workflow keeps deployment straightforward and makes it easy to track changes over time.
+        </p>
+        <ul>
+          <li><strong>Repository-based deployment</strong> through GitHub</li>
+          <li><strong>Static site hosting</strong> with no backend required</li>
+          <li><strong>Version control</strong> for safer edits and ongoing improvements</li>
+          <li><strong>Simple publishing workflow</strong> for updating content</li>
+        </ul>
+
+        <div class="image-grid">
+          <figure class="project-image">
+            <img src="assets/computers/website/2.png" alt="Screenshot of the GitHub repository or GitHub Pages deployment settings for the website." />
+            <figcaption>GitHub repository and deployment workflow used to publish the site.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <h2>DNS & Custom Domain Configuration</h2>
+        <p>
+          To make the site look more professional, I connected it to a custom domain through Namecheap instead of using only the default GitHub Pages address. This required configuring DNS records correctly so the domain would point to the hosted site.
+        </p>
+        <p>
+          Once DNS was configured, the site could be reached through my branded domain, which made the project feel far more complete and professional. I also worked through the usual challenges that come with DNS propagation, record setup, and GitHub Pages certificate generation.
+        </p>
+        <ul>
+          <li><strong>Domain registration:</strong> managed through Namecheap</li>
+          <li><strong>DNS records:</strong> configured to point the domain to GitHub Pages</li>
+          <li><strong>HTTPS:</strong> enabled through GitHub Pages certificate support</li>
+          <li><strong>Custom domain:</strong> used for a cleaner and more professional presentation</li>
+        </ul>
+      </section>
+
+      <section class="section-card">
+        <h2>Performance & Image Handling</h2>
+        <p>
+          Since this website includes photography and project images, performance was a major concern. Large images can slow down page loads, especially when full-resolution files are used directly in gallery pages.
+        </p>
+        <p>
+          To improve usability, I worked on organizing full-size images separately from smaller thumbnail versions. This reduces loading time on gallery pages while still allowing users to click through to larger images when needed.
+        </p>
+        <ul>
+          <li>Separated thumbnails from full-resolution images</li>
+          <li>Reduced page weight for image-heavy sections</li>
+          <li>Improved gallery responsiveness and usability</li>
+          <li>Kept asset folders organized for easier expansion later</li>
+        </ul>
+
+        <div class="image-grid">
+          <figure class="project-image">
+            <img src="assets/computers/website/3.png" alt="Screenshot showing image folders, thumbnails, or another example of how site assets are organized." />
+            <figcaption>Example of asset organization and image handling used to keep the site fast and manageable.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <h2>Security & Technical Considerations</h2>
+        <p>
+          One benefit of building this site as a static website is that it avoids many of the common risks that come with database-backed or plugin-heavy platforms. There is no public login panel, no server-side application stack to maintain, and fewer moving parts overall.
+        </p>
+        <p>
+          I also intentionally kept JavaScript lightweight and limited the number of third-party dependencies. That approach helps reduce complexity, improves performance, and keeps the website easier to maintain over time.
+        </p>
+        <ul>
+          <li>Static architecture with no backend database</li>
+          <li>Smaller attack surface than many CMS-based sites</li>
+          <li>Minimal JavaScript and third-party dependencies</li>
+          <li>HTTPS-enabled public access</li>
+        </ul>
+      </section>
+
+      <section class="section-card">
+        <h2>Challenges & Lessons Learned</h2>
+        <p>
+          Like most technical projects, building this site involved problem solving along the way. A few of the challenges included getting the custom domain working correctly, waiting for HTTPS provisioning, organizing large numbers of images, and dealing with file naming consistency across deployment.
+        </p>
+        <p>
+          Working through those issues helped me better understand the relationship between local files, GitHub hosting, DNS, asset management, and how small details like capitalization in filenames can affect a live deployment.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Why I Built It This Way</h2>
+        <p>
+          I wanted a site that represented both my work and the way I approach technical projects. Building it by hand gave me full control over structure, performance, organization, and future growth. It also let the website itself become part of my portfolio rather than just a container for other work.
+        </p>
+        <p>
+          This project reflects the same mindset I use in IT and homelab work: keep systems understandable, reduce unnecessary complexity, and design with maintainability in mind.
+        </p>
+      </section>
+
+      <section class="section-card">
+        <h2>Future Improvements</h2>
+        <p>
+          The current version of the site already works well, but I plan to continue improving it over time. Future upgrades may include additional project pages, more polished gallery behavior, better image optimization, and expanded write-ups for networking, cybersecurity, and system administration projects.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Delaplaine Digital Solutions.</div>
+      <div>All images and content on this website are copyrighted and owned by Delaplaine Digital Solutions.</div>
+      <div>
+        For licensing, usage permissions, or other inquiries, please contact
+        <a href="mailto:Eric@delaplainedigital.com">Eric@delaplainedigital.com</a>.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <script src="script.js?v=1"></script>
+</body>
+</html>
