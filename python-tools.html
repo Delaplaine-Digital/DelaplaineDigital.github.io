@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Python & Utility Scripts - Delaplaine Digital Solutions</title>
+  <title>Scripts & Utility Tools - Delaplaine Digital Solutions</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css?v=3" />
   <script src="main.js" defer></script>
@@ -10,58 +10,311 @@
 <body>
   <div class="site-wrapper">
     <header class="site-header">
-  <div class="brand">
-    <div class="brand-title">Delaplaine Digital Solutions</div>
-    <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
-  </div>
+      <div class="brand">
+        <div class="brand-title">Delaplaine Digital Solutions</div>
+        <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+      </div>
 
-  <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
-    ☰
-  </button>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
+        ☰
+      </button>
 
-  <nav class="navbar" id="navMenu">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="photography.html" class="nav-link">Photography</a>
-    <a href="vehicles.html" class="nav-link">Vehicles</a>
-    <a href="computer-projects.html" class="nav-link">Computer Projects</a>
-    <a href="printing.html" class="nav-link">3D Printing</a>
-    <a href="about.html" class="nav-link">About</a>
-  </nav>
-</header>
+      <nav class="navbar" id="navMenu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="photography.html" class="nav-link">Photography</a>
+        <a href="vehicles.html" class="nav-link">Vehicles</a>
+        <a href="computer-projects.html" class="nav-link active">Computer Projects</a>
+        <a href="printing.html" class="nav-link">3D Printing</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </header>
 
     <main>
-      <h1 class="page-title">Python & Utility Scripts</h1>
+      <h1 class="page-title">Scripts & Utility Tools</h1>
       <p class="page-subtitle">
-        Small tools written to scan networks, gather system info, and automate repetitive tasks.
+        A collection of small scripting tools for automation, troubleshooting, file handling,
+        networking, and general system administration.
       </p>
 
       <section class="section-card">
-        <h2>Network & Host Discovery Scripts</h2>
+        <h2>About This Page</h2>
         <p>
-          Scripts that are used for the Network go here.
+          This page highlights scripts I have written for practical tasks such as gathering system
+          information, checking network settings, automating simple actions, and speeding up
+          repetitive work. Full code is stored in my GitHub repository, while this page provides a
+          cleaner overview of what each script does.
+        </p>
+        <p>
+          Scripts are organized by language and purpose so the page stays readable while still
+          showing the kinds of tools I have built and worked on.
         </p>
       </section>
 
       <section class="section-card">
-        <h2>System Info & Automation</h2>
+        <h2>Script Repository</h2>
         <p>
-          Scripts that are used for System Information and Automation go here.
+          Full source code for these tools is organized in GitHub under separate PowerShell and
+          Python folders.
+        </p>
+        <p>
+          <a href="https://github.com/Delaplaine-Digital/Scripts" target="_blank" rel="noopener">
+            View Full Scripts Repository →
+          </a>
         </p>
       </section>
 
-      <section class="section-card">
-        <h2>Code Snippets & Output</h2>
-        <p>
-          Code snippets go here
-        </p>
-        <p class="small-note">
-          Related images can go under <code>/assets/computers/python-tools/</code>.
-        </p>
-      </section>
-	  <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+      <h2 class="section-title">PowerShell Scripts</h2>
+
+<h2 class="section-title">PowerShell Scripts</h2>
+
+<section class="section-card">
+  <h2>ComputerAudit.ps1</h2>
+  <p class="small-note">PowerShell • Windows Audit • System Review</p>
+  <p>
+    This script performs a quick Windows computer audit and returns useful system and configuration
+    details in one place. It was made as a fast way to review important settings without having to
+    dig through multiple menus and control panels manually.
+  </p>
+  <ul>
+    <li>Checks important Windows settings and system information</li>
+    <li>Useful for troubleshooting, documentation, and quick reviews</li>
+    <li>Helps verify how a machine is currently configured</li>
+  </ul>
+  <p>
+    <a href="https://github.com/Delaplaine-Digital/Scripts/blob/main/PowerShell/ComputerAudit.ps1" target="_blank" rel="noopener">
+      View Script on GitHub →
+    </a>
+  </p>
+</section>
+
+<section class="section-card">
+  <h2>ImageResize.ps1</h2>
+  <p class="small-note">PowerShell • Image Handling • Automation</p>
+  <p>
+    This script resizes images down to 1080p for easier storage, sharing, or website use. It is
+    useful when working with large batches of photos that need to be made more manageable without
+    resizing them one by one.
+  </p>
+  <ul>
+    <li>Resizes images to a 1080p-friendly format</li>
+    <li>Useful for galleries, uploads, and reducing file sizes</li>
+    <li>Saves time when processing folders of images in bulk</li>
+  </ul>
+  <p>
+    <a href="https://github.com/Delaplaine-Digital/Scripts/blob/main/PowerShell/ImageResize.ps1" target="_blank" rel="noopener">
+      View Script on GitHub →
+    </a>
+  </p>
+</section>
+
+<section class="section-card">
+  <h2>InstalledSoftwareList.ps1</h2>
+  <p class="small-note">PowerShell • Windows • Software Inventory</p>
+  <p>
+    This script quickly lists installed software on a Windows machine. It is useful when auditing a
+    system, checking what is installed on a workstation, or gathering information before cleanup,
+    migration, or troubleshooting.
+  </p>
+  <ul>
+    <li>Displays installed software in a quick readable list</li>
+    <li>Useful for audits, documentation, and support work</li>
+    <li>Helps review what is present on a machine without digging through settings</li>
+  </ul>
+  <p>
+    <a href="https://github.com/Delaplaine-Digital/Scripts/blob/main/PowerShell/InstalledSoftwareList.ps1" target="_blank" rel="noopener">
+      View Script on GitHub →
+    </a>
+  </p>
+</section>
+
+<section class="section-card">
+  <h2>InternetSpeedTest.ps1</h2>
+  <p class="small-note">PowerShell • Networking • Connectivity Check</p>
+  <p>
+    This script performs a quick internet connectivity test by checking response times against
+    Google’s DNS infrastructure. It is a simple way to confirm that a system has outside network
+    access and get a rough feel for connection responsiveness.
+  </p>
+  <ul>
+    <li>Tests basic internet connectivity</li>
+    <li>Shows response times for quick troubleshooting</li>
+    <li>Useful as a fast first step when checking network issues</li>
+  </ul>
+  <p>
+    <a href="https://github.com/Delaplaine-Digital/Scripts/blob/main/PowerShell/InternetSpeedTest.ps1" target="_blank" rel="noopener">
+      View Script on GitHub →
+    </a>
+  </p>
+</section>
+
+<section class="section-card">
+  <h2>OpenPorts.ps1</h2>
+  <p class="small-note">PowerShell • Networking • System Visibility</p>
+  <p>
+    This script checks open ports and active network connections on a Windows machine. It is useful
+    for seeing what services may be listening, reviewing local activity, or doing a quick check
+    during troubleshooting and general system review.
+  </p>
+  <ul>
+    <li>Shows open ports and connection details</li>
+    <li>Helpful for troubleshooting services and network behavior</li>
+    <li>Useful for quick visibility into what a machine is exposing</li>
+  </ul>
+  <p>
+    <a href="https://github.com/Delaplaine-Digital/Scripts/blob/main/PowerShell/OpenPorts.ps1" target="_blank" rel="noopener">
+      View Script on GitHub →
+    </a>
+  </p>
+</section>
+
+<section class="section-card">
+  <h2>OptimizePowerandPaging.ps1</h2>
+  <p class="small-note">PowerShell • Windows • Performance Tuning</p>
+  <p>
+    This script adjusts power settings, Fast Startup, and virtual memory to better suit system
+    performance. It was built as a quicker way to apply a set of performance-oriented Windows
+    settings without manually changing each option through multiple menus.
+  </p>
+  <ul>
+    <li>Adjusts power-related settings for performance</li>
+    <li>Disables or changes Fast Startup and paging configuration</li>
+    <li>Useful when setting up or tuning a Windows machine</li>
+  </ul>
+  <p>
+    <a href="https://github.com/Delaplaine-Digital/Scripts/blob/main/PowerShell/OptimizePowerandPaging.ps1" target="_blank" rel="noopener">
+      View Script on GitHub →
+    </a>
+  </p>
+</section>
+
+<section class="section-card">
+  <h2>SyncFolder.ps1</h2>
+  <p class="small-note">PowerShell • File Handling • Backup Utility</p>
+  <p>
+    This script uses robocopy to sync one folder to another location. It is useful for simple
+    backups, mirrored directories, or keeping working files copied to another drive or destination
+    with less manual effort.
+  </p>
+  <ul>
+    <li>Copies one folder to another location using robocopy</li>
+    <li>Useful for backups, mirrored folders, and repeated sync tasks</li>
+    <li>Built to make simple file replication faster and easier</li>
+  </ul>
+  <p>
+    <a href="https://github.com/Delaplaine-Digital/Scripts/blob/main/PowerShell/SyncFolder.ps1" target="_blank" rel="noopener">
+      View Script on GitHub →
+    </a>
+  </p>
+</section>
+
+ <h2 class="section-title">Python Scripts</h2>
+ 
+     <section class="section-card">
+  <h2>Address2GMaps.py</h2>
+  <p class="small-note">Python • Automation • Utility</p>
+  <p>
+    This script automates opening an address in Google Maps by reading text directly from the clipboard.
+    It removes the need to manually paste and search for addresses, making it a quick tool for navigation
+    or location lookups.
+  </p>
+  <ul>
+    <li>Reads copied address using pyperclip</li>
+    <li>Encodes input for use in a URL</li>
+    <li>Automatically opens Google Maps in a browser</li>
+  </ul>
+  <p>
+    <a href="https://github.com/Delaplaine-Digital/Scripts/blob/main/Python/Address2GMaps.py" target="_blank" rel="noopener">
+      View Script on GitHub →
+    </a>
+  </p>
+</section>
+
+<section class="section-card">
+  <h2>Find_DL_Items.py</h2>
+  <p class="small-note">Python • File Handling • Utility</p>
+  <p>
+    This script searches through the Downloads folder to locate specific files more easily.
+    It was built to help manage large or cluttered directories where manually finding files
+    becomes inefficient.
+  </p>
+  <ul>
+    <li>Searches within the Downloads directory</li>
+    <li>Helps locate files in large or unorganized folders</li>
+    <li>Useful for cleanup, sorting, or quick access</li>
+  </ul>
+  <p>
+    <a href="https://github.com/Delaplaine-Digital/Scripts/blob/main/Python/Find_DL_Items.py" target="_blank" rel="noopener">
+      View Script on GitHub →
+    </a>
+  </p>
+</section>
+
+<section class="section-card">
+  <h2>Quad_Threat.py</h2>
+  <p class="small-note">Python • System Info • Networking</p>
+  <p>
+    This script gathers multiple pieces of system information at once, including user privileges,
+    computer name, and IP address. It was built as a quick way to collect important system details
+    without needing multiple commands or tools.
+  </p>
+  <ul>
+    <li>Detects user privilege level</li>
+    <li>Retrieves hostname and IP address</li>
+    <li>Displays key system information in one output</li>
+  </ul>
+  <p>
+    <a href="https://github.com/Delaplaine-Digital/Scripts/blob/main/Python/Quad_Threat.py" target="_blank" rel="noopener">
+      View Script on GitHub →
+    </a>
+  </p>
+</section>
+
+<section class="section-card">
+  <h2>network_Info.py</h2>
+  <p class="small-note">Python • Networking • Utility</p>
+  <p>
+    This script retrieves network-related information such as the system’s IPv4 address.
+    It provides a quick way to check connectivity and identify the machine on a network
+    without using system commands.
+  </p>
+  <ul>
+    <li>Retrieves IPv4 address information</li>
+    <li>Useful for quick network checks</li>
+    <li>Helps identify system presence on a network</li>
+  </ul>
+  <p>
+    <a href="https://github.com/Delaplaine-Digital/Scripts/blob/main/Python/network_Info.py" target="_blank" rel="noopener">
+      View Script on GitHub →
+    </a>
+  </p>
+</section>
+
+<section class="section-card">
+  <h2>network_interface.py</h2>
+  <p class="small-note">Python • Networking • System Info</p>
+  <p>
+    This script displays information about the system’s active network interfaces.
+    It is useful for identifying which interface is in use and reviewing related
+    network configuration details.
+  </p>
+  <ul>
+    <li>Lists network interface details</li>
+    <li>Helps identify active connections</li>
+    <li>Useful for troubleshooting and network visibility</li>
+  </ul>
+  <p>
+    <a href="https://github.com/Delaplaine-Digital/Scripts/blob/main/Python/network_interface.py" target="_blank" rel="noopener">
+      View Script on GitHub →
+    </a>
+  </p>
+</section>
+
+      
+
+      <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
     </main>
 
-   <footer class="site-footer">
+    <footer class="site-footer">
       <div>© <span id="year"></span> Delaplaine Digital Solutions.</div>
       <div>All images and content on this website are copyrighted and owned by Delaplaine Digital Solutions.</div>
       <div>
