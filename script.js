@@ -1,43 +1,55 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // If this page has no photo tiles, do nothing
+  document.body.classList.add("loaded");
+
+  const header = document.querySelector(".site-header");
+  const nav = document.getElementById("navMenu");
+  const navToggle = document.querySelector(".nav-toggle");
+  const navLinks = document.querySelectorAll(".nav-link");
+  const backToTop = document.getElementById("backToTop");
+  const terminalOutput = document.getElementById("terminal-output");
+  const siteStatus = document.getElementById("site-status");
+
+  // photo tile lightbox only if photo tiles exist
   const hasPhotoTiles = document.querySelector("a.photo-tile");
-  if (!hasPhotoTiles) return;
+  if (hasPhotoTiles) {
+    const lightbox = document.createElement("div");
+    lightbox.className = "lightbox-backdrop";
 
-  // Create a reusable lightbox element once for pages that need it
-  const lightbox = document.createElement("div");
-  lightbox.className = "lightbox-backdrop";
-  lightbox.innerHTML = `
-    <img alt="Expanded image">
-    <div class="lightbox-hint">Click anywhere or press Esc to close</div>
-  `;
-  document.body.appendChild(lightbox);
+    const lightboxImg = document.createElement("img");
+    lightboxImg.alt = "Expanded image";
 
-  const lightboxImg = lightbox.querySelector("img");
+    const hint = document.createElement("div");
+    hint.className = "lightbox-hint";
+    hint.textContent = "Click anywhere or press Esc to close";
 
-  // Open lightbox when a .photo-tile link is clicked
-  document.addEventListener("click", (event) => {
-    const link = event.target.closest("a.photo-tile");
-    if (!link) return;
+    lightbox.appendChild(lightboxImg);
+    lightbox.appendChild(hint);
+    document.body.appendChild(lightbox);
 
-    event.preventDefault();
-    const fullSrc = link.getAttribute("href");
-    if (!fullSrc) return;
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a.photo-tile");
+      if (!link) return;
 
-    lightboxImg.src = fullSrc;
-    lightbox.classList.add("visible");
-  });
+      event.preventDefault();
+      const fullSrc = link.getAttribute("href");
+      if (!fullSrc) return;
 
-  // Close when clicking anywhere on the overlay
-  lightbox.addEventListener("click", () => {
-    lightbox.classList.remove("visible");
-    lightboxImg.src = "";
-  });
+      lightboxImg.src = fullSrc;
+      lightbox.classList.add("visible");
+    });
 
-  // Close with Escape key
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && lightbox.classList.contains("visible")) {
+    lightbox.addEventListener("click", () => {
       lightbox.classList.remove("visible");
       lightboxImg.src = "";
-    }
-  });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && lightbox.classList.contains("visible")) {
+        lightbox.classList.remove("visible");
+        lightboxImg.src = "";
+      }
+    });
+  }
+
+  // rest of your nav / terminal / back-to-top / etc goes here
 });

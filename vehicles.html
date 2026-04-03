@@ -5,23 +5,29 @@
   <title>Vehicle Projects - Delaplaine Digital Solutions</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
+  <script src="main.js" defer></script>
 </head>
 <body>
   <div class="site-wrapper">
-    <header class="site-header">
-      <div class="brand">
-        <div class="brand-title">Delaplaine Digital Solutions</div>
-        <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
-      </div>
-      <nav class="navbar">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="photography.html" class="nav-link">Photography</a>
-        <a href="vehicles.html" class="nav-link active">Vehicles</a>
-        <a href="computer-projects.html" class="nav-link">Computer Projects</a>
-        <a href="printing.html" class="nav-link">3D Printing</a>
-        <a href="about.html" class="nav-link">About</a>
-      </nav>
-    </header>
+<header class="site-header">
+  <div class="brand">
+    <div class="brand-title">Delaplaine Digital Solutions</div>
+    <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+  </div>
+
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
+    ☰
+  </button>
+
+  <nav class="navbar" id="navMenu">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="photography.html" class="nav-link">Photography</a>
+    <a href="vehicles.html" class="nav-link">Vehicles</a>
+    <a href="computer-projects.html" class="nav-link">Computer Projects</a>
+    <a href="printing.html" class="nav-link">3D Printing</a>
+    <a href="about.html" class="nav-link">About</a>
+  </nav>
+</header>
 
     <main>
       <h1 class="page-title">Vehicle Projects</h1>
@@ -37,6 +43,7 @@
           <li>Sensor mounts and 3D printed brackets</li>
         </ul>
       </section>
+	  <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
     </main>
 
    <footer class="site-footer">
