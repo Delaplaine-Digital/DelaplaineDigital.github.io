@@ -9,9 +9,119 @@ document.addEventListener("DOMContentLoaded", () => {
   const terminalOutput = document.getElementById("terminal-output");
   const siteStatus = document.getElementById("site-status");
 
-  // photo tile lightbox only if photo tiles exist
-  const hasPhotoTiles = document.querySelector("a.photo-tile");
-  if (hasPhotoTiles) {
+  let lastScrollY = window.scrollY;
+
+  // Active nav link
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  navLinks.forEach(link => {
+    const href = link.getAttribute("href");
+    if (href === currentPage || (currentPage === "" && href === "index.html")) {
+      link.classList.add("active");
+    }
+  });
+
+  // Mobile nav toggle
+  if (nav && navToggle) {
+    if (window.innerWidth <= 860) {
+      nav.classList.add("closed");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+
+    navToggle.addEventListener("click", () => {
+      const isClosed = nav.classList.toggle("closed");
+      navToggle.setAttribute("aria-expanded", String(!isClosed));
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        nav.classList.add("closed");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth <= 860) {
+          nav.classList.add("closed");
+          navToggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+  }
+
+  // Scroll behavior
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+
+    if (header) {
+      header.classList.toggle("nav-scrolled", currentScrollY > 12);
+
+      const scrollingDown = currentScrollY > lastScrollY;
+      const farEnoughDown = currentScrollY > 120;
+
+      if (scrollingDown && farEnoughDown) {
+        header.classList.add("nav-hidden");
+      } else {
+        header.classList.remove("nav-hidden");
+      }
+    }
+
+    if (backToTop) {
+      backToTop.classList.toggle("show", currentScrollY > 400);
+    }
+
+    lastScrollY = currentScrollY;
+  });
+
+  // Back to top
+  if (backToTop) {
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+
+  // Terminal intro
+  if (terminalOutput) {
+    const terminalText =
+`> whoami
+Eric Delaplaine - Cybersecurity / IT / Systems
+
+> projects --list
+- OPNsense Firewall & Segmentation
+- Homelab NAS / NVR
+- ESP32 Vehicle Telemetry
+- Windows Troubleshooting
+- 3D Printing Builds
+
+> status
+[ONLINE]`;
+
+    let i = 0;
+    const typeTerminal = () => {
+      if (i < terminalText.length) {
+        terminalOutput.textContent += terminalText.charAt(i);
+        i += 1;
+        setTimeout(typeTerminal, 18);
+      }
+    };
+    typeTerminal();
+  }
+
+  // Project expanders
+  document.querySelectorAll(".project").forEach(project => {
+    project.addEventListener("click", (e) => {
+      const clickedLink = e.target.closest("a, button");
+      if (clickedLink) return;
+      project.classList.toggle("open");
+    });
+  });
+
+  // Photo tile lightbox
+  const photoTileLinks = document.querySelectorAll("a.photo-tile");
+  if (photoTileLinks.length > 0) {
     const lightbox = document.createElement("div");
     lightbox.className = "lightbox-backdrop";
 
@@ -51,5 +161,94 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // rest of your nav / terminal / back-to-top / etc goes here
+  // Generic image lightbox
+  const imageSelectors = ".gallery img, .photo-grid img, .project-image img, .lightbox-image";
+  const images = document.querySelectorAll(imageSelectors);
+
+  if (images.length > 0) {
+    const lightbox = document.createElement("div");
+    lightbox.className = "lightbox hidden";
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-modal", "true");
+
+    const lightboxImg = document.createElement("img");
+    lightboxImg.alt = "";
+
+    const closeBtn = document.createElement("button");
+    closeBtn.className = "lightbox-close";
+    closeBtn.setAttribute("aria-label", "Close image");
+    closeBtn.textContent = "×";
+
+    lightbox.appendChild(closeBtn);
+    lightbox.appendChild(lightboxImg);
+    document.body.appendChild(lightbox);
+
+    const closeLightbox = () => {
+      lightbox.classList.add("hidden");
+      lightboxImg.src = "";
+      lightboxImg.alt = "";
+    };
+
+    images.forEach(img => {
+      img.style.cursor = "zoom-in";
+      img.addEventListener("click", () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || "";
+        lightbox.classList.remove("hidden");
+      });
+    });
+
+    closeBtn.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeLightbox();
+      }
+    });
+  }
+
+  // Mouse glow
+  document.addEventListener("mousemove", (e) => {
+    document.documentElement.style.setProperty("--mouse-x", `${e.clientX}px`);
+    document.documentElement.style.setProperty("--mouse-y", `${e.clientY}px`);
+  });
+
+  // Easter egg
+  let typedKeys = "";
+  document.addEventListener("keydown", (e) => {
+    if (e.key.length === 1) {
+      typedKeys += e.key.toLowerCase();
+      typedKeys = typedKeys.slice(-20);
+    }
+
+    if (typedKeys.includes("delaplaine")) {
+      if (siteStatus) {
+        siteStatus.textContent = "System status: ADMIN MODE ENABLED";
+      }
+      typedKeys = "";
+    }
+  });
+
+  // Status rotator
+  if (siteStatus) {
+    const statuses = [
+      "System status: ONLINE",
+      "Firewall: ACTIVE",
+      "Homelab: OPERATIONAL",
+      "NVR: RECORDING",
+      "Pi-hole: FILTERING"
+    ];
+
+    let statusIndex = 0;
+    setInterval(() => {
+      statusIndex = (statusIndex + 1) % statuses.length;
+      siteStatus.textContent = statuses[statusIndex];
+    }, 4000);
+  }
 });
