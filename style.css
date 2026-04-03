@@ -13,15 +13,13 @@ body {
   letter-spacing: 0.2px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  opacity: 0;
-  transition: opacity 0.35s ease;
 }
 
-body.loaded {
-  opacity: 1;
-}
+/* Optional fade-in only if JS adds body.loaded
+   If you do not want this effect, leave it removed like this.
+*/
 
-/* ---------- Header ---------- */
+/* Header / nav */
 .site-header {
   position: sticky;
   top: 0;
@@ -42,25 +40,6 @@ body.loaded {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
-.brand {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.brand-title {
-  font-size: 1.45rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.brand-subtitle {
-  font-size: 0.9rem;
-  opacity: 0.75;
-}
-
-/* ---------- Nav ---------- */
 .nav-toggle {
   display: none;
   background: transparent;
@@ -78,6 +57,7 @@ body.loaded {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  transition: max-height 0.3s ease, opacity 0.25s ease, margin-top 0.25s ease;
 }
 
 .nav-link {
@@ -123,7 +103,7 @@ body.loaded {
   transform: scaleX(1);
 }
 
-/* ---------- Back to top ---------- */
+/* Back to top */
 .back-to-top {
   position: fixed;
   right: 1.25rem;
@@ -149,7 +129,112 @@ body.loaded {
   transform: translateY(0);
 }
 
-/* ---------- Mobile ---------- */
+/* Cards / tiles / project boxes */
+.card,
+.project-card,
+.photo-card,
+.gallery-item,
+.tile,
+.section-card,
+.grid-card {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.card:hover,
+.project-card:hover,
+.photo-card:hover,
+.gallery-item:hover,
+.tile:hover,
+.section-card:hover,
+.grid-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+}
+
+/* Expandable project details */
+.project-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, margin-top 0.3s ease;
+}
+
+.project.open .project-details {
+  max-height: 600px;
+  margin-top: 1rem;
+}
+
+.project {
+  cursor: pointer;
+}
+
+/* Mouse glow */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255,255,255,0.05),
+    transparent 40%
+  );
+  z-index: 0;
+}
+
+.site-wrapper,
+main,
+header,
+footer,
+section,
+div {
+  position: relative;
+  z-index: 1;
+}
+
+/* Footer status */
+.footer-status {
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+/* Generic lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 2000;
+}
+
+.lightbox.hidden {
+  display: none;
+}
+
+.lightbox img {
+  max-width: 95vw;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* Mobile nav */
 @media (max-width: 860px) {
   .site-header {
     padding: 1rem 1.1rem;
@@ -173,7 +258,6 @@ body.loaded {
     max-height: 500px;
     opacity: 1;
     margin-top: 1rem;
-    transition: max-height 0.3s ease, opacity 0.25s ease, margin-top 0.25s ease;
   }
 
   .navbar.closed {
