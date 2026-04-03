@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Page Title - Delaplaine Digital Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css?v=3" />
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <div class="site-wrapper">
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-title">Delaplaine Digital Solutions</div>
+        <div class="brand-subtitle">
+          Photography · Vehicles · Tech Projects · 3D Printing
+        </div>
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
+        ☰
+      </button>
+
+      <nav class="navbar" id="navMenu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="photography.html" class="nav-link">Photography</a>
+        <a href="vehicles.html" class="nav-link">Vehicles</a>
+        <a href="computer-projects.html" class="nav-link">Computer Projects</a>
+        <a href="printing.html" class="nav-link">3D Printing</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </header>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main>
+      <!-- Page Title -->
+      <h1 class="page-title">Page Title</h1>
+
+      <!-- Short Description -->
+      <p class="page-subtitle">
+        Brief description of what this page is about.
+      </p>
+
+      <!-- ================= SECTION 1 ================= -->
+      <section class="section-card">
+        <h2>Section Title</h2>
+        <p>
+          This is a general content section. Replace this text with whatever
+          applies to the page (project description, gallery intro, etc).
+        </p>
+      </section>
+
+      <!-- ================= SECTION 2 ================= -->
+      <section class="section-card">
+        <h2>Another Section</h2>
+        <p>
+          Use additional sections to break content up cleanly.
+        </p>
+
+        <!-- Example Image -->
+        <img src="assets/example.jpg" alt="Example image" class="content-image" />
+      </section>
+
+      <!-- ================= SECTION 3 ================= -->
+      <section class="section-card">
+        <h2>Details / Breakdown</h2>
+
+        <ul>
+          <li>Key point or feature</li>
+          <li>Another important detail</li>
+          <li>Anything worth highlighting</li>
+        </ul>
+      </section>
+
+      <!-- Back to Top -->
+      <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Delaplaine Digital Solutions.</div>
+      <div>
+        All images and content on this website are copyrighted and owned by
+        Delaplaine Digital Solutions.
+      </div>
+      <div>
+        For licensing, usage permissions, or inquiries, contact
+        <a href="mailto:Eric@delaplainedigital.com">Eric@delaplainedigital.com</a>.
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Dynamic Year -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <script src="script.js?v=1"></script>
+</body>
+</html>
