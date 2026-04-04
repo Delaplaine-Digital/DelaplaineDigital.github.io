@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let lastScrollY = window.scrollY;
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
-  const isLubeLoggerPage = currentPage.toLowerCase() === "lubelogger.html";
 
   /* ---------------- YEAR ---------------- */
   if (yearEl) {
@@ -31,13 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const isMobile = window.innerWidth <= 860;
 
       if (isMobile) {
-        if (isLubeLoggerPage) {
-          nav.classList.remove("closed");
-          navToggle.setAttribute("aria-expanded", "true");
-        } else {
-          nav.classList.add("closed");
-          navToggle.setAttribute("aria-expanded", "false");
-        }
+        nav.classList.add("closed");
+        navToggle.setAttribute("aria-expanded", "false");
       } else {
         nav.classList.remove("closed");
         navToggle.setAttribute("aria-expanded", "true");
@@ -48,16 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", setNavState);
 
     navToggle.addEventListener("click", () => {
-      if (window.innerWidth <= 860 && isLubeLoggerPage) {
-        return;
-      }
-
       const isClosed = nav.classList.toggle("closed");
       navToggle.setAttribute("aria-expanded", String(!isClosed));
     });
 
     document.addEventListener("keydown", e => {
-      if (e.key === "Escape" && window.innerWidth <= 860 && !isLubeLoggerPage) {
+      if (e.key === "Escape" && window.innerWidth <= 860) {
         nav.classList.add("closed");
         navToggle.setAttribute("aria-expanded", "false");
       }
@@ -65,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     navLinks.forEach(link => {
       link.addEventListener("click", () => {
-        if (window.innerWidth <= 860 && !isLubeLoggerPage) {
+        if (window.innerWidth <= 860) {
           nav.classList.add("closed");
           navToggle.setAttribute("aria-expanded", "false");
         }
@@ -205,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
         closeGenericLightbox();
       }
     });
-  }
+  });
 
   /* ---------------- MOUSE GLOW ---------------- */
   document.addEventListener("mousemove", e => {
