@@ -1,60 +1,71 @@
 document.addEventListener("DOMContentLoaded", () => {
-  document.body.classList.add("loaded");
-
+  const body = document.body;
   const header = document.querySelector(".site-header");
   const nav = document.getElementById("navMenu");
   const navToggle = document.querySelector(".nav-toggle");
   const navLinks = document.querySelectorAll(".nav-link");
   const backToTop = document.getElementById("backToTop");
-  const terminalOutput = document.getElementById("terminal-output");
   const siteStatus = document.getElementById("site-status");
+  const yearEl = document.getElementById("year");
 
   let lastScrollY = window.scrollY;
-
-  /* ---------------- NAV ACTIVE LINK ---------------- */
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const isLubeLoggerPage = currentPage.toLowerCase() === "lubelogger.html";
 
+  /* ---------------- YEAR ---------------- */
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
+  /* ---------------- ACTIVE NAV LINK ---------------- */
   navLinks.forEach(link => {
     const href = link.getAttribute("href");
-    if (href === currentPage || (currentPage === "" && href === "index.html")) {
+    if (href === currentPage || (currentPage === "index.html" && href === "index.html")) {
       link.classList.add("active");
     }
   });
 
   /* ---------------- MOBILE NAV ---------------- */
   if (nav && navToggle) {
-
     const setNavState = () => {
-      if (window.innerWidth <= 860) {
-        nav.classList.add("closed");
-        navToggle.setAttribute("aria-expanded", "false");
+      const isMobile = window.innerWidth <= 860;
+
+      if (isMobile) {
+        if (isLubeLoggerPage) {
+          nav.classList.remove("closed");
+          navToggle.setAttribute("aria-expanded", "true");
+        } else {
+          nav.classList.add("closed");
+          navToggle.setAttribute("aria-expanded", "false");
+        }
       } else {
         nav.classList.remove("closed");
         navToggle.setAttribute("aria-expanded", "true");
       }
     };
 
-    // Run on load + resize
     setNavState();
     window.addEventListener("resize", setNavState);
 
     navToggle.addEventListener("click", () => {
+      if (window.innerWidth <= 860 && isLubeLoggerPage) {
+        return;
+      }
+
       const isClosed = nav.classList.toggle("closed");
       navToggle.setAttribute("aria-expanded", String(!isClosed));
     });
 
-    // Close on ESC
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && window.innerWidth <= 860 && !isLubeLoggerPage) {
         nav.classList.add("closed");
         navToggle.setAttribute("aria-expanded", "false");
       }
     });
 
-    // Close when clicking a link (mobile only)
     navLinks.forEach(link => {
       link.addEventListener("click", () => {
-        if (window.innerWidth <= 860) {
+        if (window.innerWidth <= 860 && !isLubeLoggerPage) {
           nav.classList.add("closed");
           navToggle.setAttribute("aria-expanded", "false");
         }
@@ -71,12 +82,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const scrollingDown = currentScrollY > lastScrollY;
       const farEnoughDown = currentScrollY > 120;
-
       header.classList.toggle("nav-hidden", scrollingDown && farEnoughDown);
     }
 
     if (backToTop) {
-      backToTop.classList.toggle("show", currentScrollY > 400);
+      backToTop.classList.toggle("show", currentScrollY > 150);
     }
 
     lastScrollY = currentScrollY;
@@ -85,48 +95,22 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---------------- BACK TO TOP ---------------- */
   if (backToTop) {
     backToTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     });
-  }
-
-  /* ---------------- TERMINAL EFFECT ---------------- */
-  if (terminalOutput) {
-    const terminalText =
-`> whoami
-Eric Delaplaine - Cybersecurity / IT / Systems
-
-> projects --list
-- OPNsense Firewall & Segmentation
-- Homelab NAS / NVR
-- ESP32 Vehicle Telemetry
-- Windows Troubleshooting
-- 3D Printing Builds
-
-> status
-[ONLINE]`;
-
-    let i = 0;
-
-    const typeTerminal = () => {
-      if (i < terminalText.length) {
-        terminalOutput.textContent += terminalText.charAt(i);
-        i++;
-        setTimeout(typeTerminal, 18);
-      }
-    };
-
-    typeTerminal();
   }
 
   /* ---------------- PROJECT EXPANDERS ---------------- */
   document.querySelectorAll(".project").forEach(project => {
-    project.addEventListener("click", (e) => {
+    project.addEventListener("click", e => {
       if (e.target.closest("a, button")) return;
       project.classList.toggle("open");
     });
   });
 
-  /* ---------------- LIGHTBOX (PHOTO TILE) ---------------- */
+  /* ---------------- PHOTO TILE LIGHTBOX ---------------- */
   const photoTiles = document.querySelectorAll("a.photo-tile");
 
   if (photoTiles.length > 0) {
@@ -134,16 +118,22 @@ Eric Delaplaine - Cybersecurity / IT / Systems
     lightbox.className = "lightbox-backdrop";
 
     const img = document.createElement("img");
-    const hint = document.createElement("div");
+    img.alt = "Expanded image";
 
+    const hint = document.createElement("div");
     hint.className = "lightbox-hint";
     hint.textContent = "Click anywhere or press Esc to close";
 
     lightbox.appendChild(img);
     lightbox.appendChild(hint);
-    document.body.appendChild(lightbox);
+    body.appendChild(lightbox);
 
-    document.addEventListener("click", (e) => {
+    const closePhotoLightbox = () => {
+      lightbox.classList.remove("visible");
+      img.src = "";
+    };
+
+    document.addEventListener("click", e => {
       const link = e.target.closest("a.photo-tile");
       if (!link) return;
 
@@ -155,40 +145,42 @@ Eric Delaplaine - Cybersecurity / IT / Systems
       lightbox.classList.add("visible");
     });
 
-    const close = () => {
-      lightbox.classList.remove("visible");
-      img.src = "";
-    };
+    lightbox.addEventListener("click", closePhotoLightbox);
 
-    lightbox.addEventListener("click", close);
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") close();
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && lightbox.classList.contains("visible")) {
+        closePhotoLightbox();
+      }
     });
   }
 
   /* ---------------- GENERIC IMAGE LIGHTBOX ---------------- */
   const images = document.querySelectorAll(
-    ".gallery img, .photo-grid img, .project-image img, .lightbox-image"
+    ".gallery img, .project-image img, .lightbox-image, .content-image img, .screenshot img"
   );
 
   if (images.length > 0) {
     const lightbox = document.createElement("div");
     lightbox.className = "lightbox hidden";
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-modal", "true");
 
     const img = document.createElement("img");
-    const closeBtn = document.createElement("button");
+    img.alt = "";
 
+    const closeBtn = document.createElement("button");
     closeBtn.className = "lightbox-close";
+    closeBtn.setAttribute("aria-label", "Close image");
     closeBtn.textContent = "×";
 
     lightbox.appendChild(closeBtn);
     lightbox.appendChild(img);
-    document.body.appendChild(lightbox);
+    body.appendChild(lightbox);
 
-    const close = () => {
+    const closeGenericLightbox = () => {
       lightbox.classList.add("hidden");
       img.src = "";
+      img.alt = "";
     };
 
     images.forEach(el => {
@@ -200,19 +192,23 @@ Eric Delaplaine - Cybersecurity / IT / Systems
       });
     });
 
-    closeBtn.addEventListener("click", close);
+    closeBtn.addEventListener("click", closeGenericLightbox);
 
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) close();
+    lightbox.addEventListener("click", e => {
+      if (e.target === lightbox) {
+        closeGenericLightbox();
+      }
     });
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") close();
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && !lightbox.classList.contains("hidden")) {
+        closeGenericLightbox();
+      }
     });
   }
 
   /* ---------------- MOUSE GLOW ---------------- */
-  document.addEventListener("mousemove", (e) => {
+  document.addEventListener("mousemove", e => {
     document.documentElement.style.setProperty("--mouse-x", `${e.clientX}px`);
     document.documentElement.style.setProperty("--mouse-y", `${e.clientY}px`);
   });
@@ -220,7 +216,7 @@ Eric Delaplaine - Cybersecurity / IT / Systems
   /* ---------------- EASTER EGG ---------------- */
   let typedKeys = "";
 
-  document.addEventListener("keydown", (e) => {
+  document.addEventListener("keydown", e => {
     if (e.key.length === 1) {
       typedKeys += e.key.toLowerCase();
       typedKeys = typedKeys.slice(-20);
@@ -251,5 +247,4 @@ Eric Delaplaine - Cybersecurity / IT / Systems
       siteStatus.textContent = statuses[index];
     }, 4000);
   }
-
 });
