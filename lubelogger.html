@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>LubeLogger - Delaplaine Digital Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css?v=3" />
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <div class="site-wrapper">
+
+<header class="site-header">
+  <div class="brand">
+    <div class="brand-title">Delaplaine Digital Solutions</div>
+    <div class="brand-subtitle">Photography · Vehicles · Tech Projects · 3D Printing</div>
+  </div>
+
+  <button class="nav-toggle" aria-label="Toggle navigation"></button>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="vehicles.html" class="nav-link active">Vehicles</a>
+  </nav>
+</header>
+
+<main>
+  <h1 class="page-title">LubeLogger</h1>
+  <p class="page-subtitle">
+    Self-hosted vehicle maintenance tracking system running inside my homelab.
+  </p>
+
+  <!-- Overview -->
+  <section class="section-card">
+    <h2>Overview</h2>
+    <p>
+      LubeLogger is my primary system for tracking vehicle maintenance, service history,
+      and ongoing work across my vehicles. Instead of relying on third-party apps,
+      this is fully self-hosted and integrated into my home network.
+    </p>
+
+    <p>
+      It allows me to keep track of oil changes, mileage intervals, repairs,
+      and general upkeep in a structured and centralized way. This turns what would
+      normally be scattered notes into a consistent system I actually use day-to-day.
+    </p>
+  </section>
+
+  <!-- Setup -->
+  <section class="section-card">
+    <h2>Deployment & Setup</h2>
+
+    <p>
+      LubeLogger is hosted on a dedicated <strong>Ubuntu Server virtual machine</strong>
+      running inside <strong>Hyper-V</strong> on my homelab system.
+    </p>
+
+    <p>
+      The VM was provisioned with a <strong>20GB disk</strong>, keeping it lightweight
+      while still allowing room for growth as more data is logged over time.
+    </p>
+
+    <p>
+      On the network side, the system is integrated through <strong>OPNsense</strong>,
+      where it was assigned a static IP address to ensure consistent access across
+      the network.
+    </p>
+
+    <p>
+      Internal DNS was configured so the service can be accessed using:
+      <strong>lubelogger.home.arpa</strong>
+      instead of needing to remember an IP address. This keeps everything clean
+      and consistent with the rest of the homelab environment.
+    </p>
+  </section>
+
+  <!-- Usage -->
+  <section class="section-card">
+    <h2>Real-World Use</h2>
+
+    <p>
+      This system is actively used as my main method for tracking everything related
+      to my vehicles. Every oil change, repair, and maintenance task gets logged,
+      giving me a full history of what has been done and when.
+    </p>
+
+    <p>
+      It is especially useful for keeping track of:
+    </p>
+
+    <ul>
+      <li>Oil changes and fluid intervals</li>
+      <li>Mileage-based maintenance</li>
+      <li>Parts replaced and troubleshooting history</li>
+      <li>Ongoing or future work that needs to be completed</li>
+    </ul>
+
+    <p>
+      Over time, this builds a detailed record for each vehicle, making it easier
+      to diagnose issues, stay on schedule, and avoid missing maintenance.
+    </p>
+  </section>
+
+  <!-- Why I Built It -->
+  <section class="section-card">
+    <h2>Why I Built This</h2>
+
+    <p>
+      Most existing solutions either require subscriptions, lack flexibility,
+      or don’t integrate well into a self-hosted environment. This project solves
+      that by keeping everything local, fast, and fully under my control.
+    </p>
+
+    <p>
+      It also serves as a practical example of combining IT infrastructure with
+      real-world use — bridging homelab systems with everyday applications.
+    </p>
+  </section>
+
+  <!-- Screenshots -->
+  <section class="section-card">
+    <h2>Screenshots</h2>
+    <p class="small-note">Screenshot of Dashboard and Car</p>
+
+    <div class="photo-grid">
+      <img src="assets/vehicles/lubelogger/1.png" alt="Dashboard">
+	  <img src="assets/vehicles/lubelogger/2.png" alt="Example of Vehicle Dashboard">
+	  <img src="assets/vehicles/lubelogger/2.png" alt="Example of Maintaince Report">
+    </div>
+  </section>
+
+  <button id="backToTop" class="back-to-top">↑</button>
+
+</main>
+
+<footer class="site-footer">
+  <div>© <span id="year"></span> Delaplaine Digital Solutions.</div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
