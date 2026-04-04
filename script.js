@@ -11,8 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let lastScrollY = window.scrollY;
 
-  // Active nav link
+  /* ---------------- NAV ACTIVE LINK ---------------- */
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
+
   navLinks.forEach(link => {
     const href = link.getAttribute("href");
     if (href === currentPage || (currentPage === "" && href === "index.html")) {
@@ -20,18 +21,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Mobile nav toggle
+  /* ---------------- MOBILE NAV ---------------- */
   if (nav && navToggle) {
-    if (window.innerWidth <= 860) {
-      nav.classList.add("closed");
-      navToggle.setAttribute("aria-expanded", "false");
-    }
+
+    const setNavState = () => {
+      if (window.innerWidth <= 860) {
+        nav.classList.add("closed");
+        navToggle.setAttribute("aria-expanded", "false");
+      } else {
+        nav.classList.remove("closed");
+        navToggle.setAttribute("aria-expanded", "true");
+      }
+    };
+
+    // Run on load + resize
+    setNavState();
+    window.addEventListener("resize", setNavState);
 
     navToggle.addEventListener("click", () => {
       const isClosed = nav.classList.toggle("closed");
       navToggle.setAttribute("aria-expanded", String(!isClosed));
     });
 
+    // Close on ESC
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         nav.classList.add("closed");
@@ -39,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    // Close when clicking a link (mobile only)
     navLinks.forEach(link => {
       link.addEventListener("click", () => {
         if (window.innerWidth <= 860) {
@@ -49,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Scroll behavior
+  /* ---------------- SCROLL BEHAVIOR ---------------- */
   window.addEventListener("scroll", () => {
     const currentScrollY = window.scrollY;
 
@@ -59,11 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const scrollingDown = currentScrollY > lastScrollY;
       const farEnoughDown = currentScrollY > 120;
 
-      if (scrollingDown && farEnoughDown) {
-        header.classList.add("nav-hidden");
-      } else {
-        header.classList.remove("nav-hidden");
-      }
+      header.classList.toggle("nav-hidden", scrollingDown && farEnoughDown);
     }
 
     if (backToTop) {
@@ -73,17 +82,14 @@ document.addEventListener("DOMContentLoaded", () => {
     lastScrollY = currentScrollY;
   });
 
-  // Back to top
+  /* ---------------- BACK TO TOP ---------------- */
   if (backToTop) {
     backToTop.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
-  // Terminal intro
+  /* ---------------- TERMINAL EFFECT ---------------- */
   if (terminalOutput) {
     const terminalText =
 `> whoami
@@ -100,127 +106,120 @@ Eric Delaplaine - Cybersecurity / IT / Systems
 [ONLINE]`;
 
     let i = 0;
+
     const typeTerminal = () => {
       if (i < terminalText.length) {
         terminalOutput.textContent += terminalText.charAt(i);
-        i += 1;
+        i++;
         setTimeout(typeTerminal, 18);
       }
     };
+
     typeTerminal();
   }
 
-  // Project expanders
+  /* ---------------- PROJECT EXPANDERS ---------------- */
   document.querySelectorAll(".project").forEach(project => {
     project.addEventListener("click", (e) => {
-      const clickedLink = e.target.closest("a, button");
-      if (clickedLink) return;
+      if (e.target.closest("a, button")) return;
       project.classList.toggle("open");
     });
   });
 
-  // Photo tile lightbox
-  const photoTileLinks = document.querySelectorAll("a.photo-tile");
-  if (photoTileLinks.length > 0) {
+  /* ---------------- LIGHTBOX (PHOTO TILE) ---------------- */
+  const photoTiles = document.querySelectorAll("a.photo-tile");
+
+  if (photoTiles.length > 0) {
     const lightbox = document.createElement("div");
     lightbox.className = "lightbox-backdrop";
 
-    const lightboxImg = document.createElement("img");
-    lightboxImg.alt = "Expanded image";
-
+    const img = document.createElement("img");
     const hint = document.createElement("div");
+
     hint.className = "lightbox-hint";
     hint.textContent = "Click anywhere or press Esc to close";
 
-    lightbox.appendChild(lightboxImg);
+    lightbox.appendChild(img);
     lightbox.appendChild(hint);
     document.body.appendChild(lightbox);
 
-    document.addEventListener("click", (event) => {
-      const link = event.target.closest("a.photo-tile");
+    document.addEventListener("click", (e) => {
+      const link = e.target.closest("a.photo-tile");
       if (!link) return;
 
-      event.preventDefault();
-      const fullSrc = link.getAttribute("href");
-      if (!fullSrc) return;
+      e.preventDefault();
+      const src = link.getAttribute("href");
+      if (!src) return;
 
-      lightboxImg.src = fullSrc;
+      img.src = src;
       lightbox.classList.add("visible");
     });
 
-    lightbox.addEventListener("click", () => {
+    const close = () => {
       lightbox.classList.remove("visible");
-      lightboxImg.src = "";
-    });
+      img.src = "";
+    };
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && lightbox.classList.contains("visible")) {
-        lightbox.classList.remove("visible");
-        lightboxImg.src = "";
-      }
+    lightbox.addEventListener("click", close);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
     });
   }
 
-  // Generic image lightbox
-  const imageSelectors = ".gallery img, .photo-grid img, .project-image img, .lightbox-image";
-  const images = document.querySelectorAll(imageSelectors);
+  /* ---------------- GENERIC IMAGE LIGHTBOX ---------------- */
+  const images = document.querySelectorAll(
+    ".gallery img, .photo-grid img, .project-image img, .lightbox-image"
+  );
 
   if (images.length > 0) {
     const lightbox = document.createElement("div");
     lightbox.className = "lightbox hidden";
-    lightbox.setAttribute("role", "dialog");
-    lightbox.setAttribute("aria-modal", "true");
 
-    const lightboxImg = document.createElement("img");
-    lightboxImg.alt = "";
-
+    const img = document.createElement("img");
     const closeBtn = document.createElement("button");
+
     closeBtn.className = "lightbox-close";
-    closeBtn.setAttribute("aria-label", "Close image");
     closeBtn.textContent = "×";
 
     lightbox.appendChild(closeBtn);
-    lightbox.appendChild(lightboxImg);
+    lightbox.appendChild(img);
     document.body.appendChild(lightbox);
 
-    const closeLightbox = () => {
+    const close = () => {
       lightbox.classList.add("hidden");
-      lightboxImg.src = "";
-      lightboxImg.alt = "";
+      img.src = "";
     };
 
-    images.forEach(img => {
-      img.style.cursor = "zoom-in";
-      img.addEventListener("click", () => {
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt || "";
+    images.forEach(el => {
+      el.style.cursor = "zoom-in";
+      el.addEventListener("click", () => {
+        img.src = el.src;
+        img.alt = el.alt || "";
         lightbox.classList.remove("hidden");
       });
     });
 
-    closeBtn.addEventListener("click", closeLightbox);
+    closeBtn.addEventListener("click", close);
 
     lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) {
-        closeLightbox();
-      }
+      if (e.target === lightbox) close();
     });
 
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        closeLightbox();
-      }
+      if (e.key === "Escape") close();
     });
   }
 
-  // Mouse glow
+  /* ---------------- MOUSE GLOW ---------------- */
   document.addEventListener("mousemove", (e) => {
     document.documentElement.style.setProperty("--mouse-x", `${e.clientX}px`);
     document.documentElement.style.setProperty("--mouse-y", `${e.clientY}px`);
   });
 
-  // Easter egg
+  /* ---------------- EASTER EGG ---------------- */
   let typedKeys = "";
+
   document.addEventListener("keydown", (e) => {
     if (e.key.length === 1) {
       typedKeys += e.key.toLowerCase();
@@ -235,7 +234,7 @@ Eric Delaplaine - Cybersecurity / IT / Systems
     }
   });
 
-  // Status rotator
+  /* ---------------- STATUS ROTATOR ---------------- */
   if (siteStatus) {
     const statuses = [
       "System status: ONLINE",
@@ -245,10 +244,12 @@ Eric Delaplaine - Cybersecurity / IT / Systems
       "Pi-hole: FILTERING"
     ];
 
-    let statusIndex = 0;
+    let index = 0;
+
     setInterval(() => {
-      statusIndex = (statusIndex + 1) % statuses.length;
-      siteStatus.textContent = statuses[statusIndex];
+      index = (index + 1) % statuses.length;
+      siteStatus.textContent = statuses[index];
     }, 4000);
   }
+
 });
