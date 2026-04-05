@@ -42,8 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", setNavState);
 
     navToggle.addEventListener("click", () => {
-      const isClosed = nav.classList.toggle("closed");
-      navToggle.setAttribute("aria-expanded", String(!isClosed));
+      if (window.innerWidth <= 860) {
+        const isClosed = nav.classList.toggle("closed");
+        navToggle.setAttribute("aria-expanded", String(!isClosed));
+      }
     });
 
     document.addEventListener("keydown", e => {
@@ -123,118 +125,25 @@ document.addEventListener("DOMContentLoaded", () => {
       img.src = "";
     };
 
-    document.addEventListener("click", e => {
-      const link = e.target.closest("a.photo-tile");
-      if (!link) return;
-
-      e.preventDefault();
-      const src = link.getAttribute("href");
-      if (!src) return;
-
-      img.src = src;
-      lightbox.classList.add("visible");
+    photoTiles.forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        img.src = link.getAttribute("href");
+        lightbox.classList.add("visible");
+      });
     });
 
     lightbox.addEventListener("click", closePhotoLightbox);
 
     document.addEventListener("keydown", e => {
-      if (e.key === "Escape" && lightbox.classList.contains("visible")) {
+      if (e.key === "Escape") {
         closePhotoLightbox();
       }
     });
   }
 
-  /* ---------------- GENERIC IMAGE LIGHTBOX ---------------- */
-  const images = document.querySelectorAll(
-    ".gallery img, .project-image img, .lightbox-image, .content-image img, .screenshot img"
-  );
-
-  if (images.length > 0) {
-    const lightbox = document.createElement("div");
-    lightbox.className = "lightbox hidden";
-    lightbox.setAttribute("role", "dialog");
-    lightbox.setAttribute("aria-modal", "true");
-
-    const img = document.createElement("img");
-    img.alt = "";
-
-    const closeBtn = document.createElement("button");
-    closeBtn.className = "lightbox-close";
-    closeBtn.setAttribute("aria-label", "Close image");
-    closeBtn.textContent = "×";
-
-    lightbox.appendChild(closeBtn);
-    lightbox.appendChild(img);
-    body.appendChild(lightbox);
-
-    const closeGenericLightbox = () => {
-      lightbox.classList.add("hidden");
-      img.src = "";
-      img.alt = "";
-    };
-
-    images.forEach(el => {
-      el.style.cursor = "zoom-in";
-      el.addEventListener("click", () => {
-        img.src = el.src;
-        img.alt = el.alt || "";
-        lightbox.classList.remove("hidden");
-      });
-    });
-
-    closeBtn.addEventListener("click", closeGenericLightbox);
-
-    lightbox.addEventListener("click", e => {
-      if (e.target === lightbox) {
-        closeGenericLightbox();
-      }
-    });
-
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape" && !lightbox.classList.contains("hidden")) {
-        closeGenericLightbox();
-      }
-    });
-  });
-
-  /* ---------------- MOUSE GLOW ---------------- */
-  document.addEventListener("mousemove", e => {
-    document.documentElement.style.setProperty("--mouse-x", `${e.clientX}px`);
-    document.documentElement.style.setProperty("--mouse-y", `${e.clientY}px`);
-  });
-
-  /* ---------------- EASTER EGG ---------------- */
-  let typedKeys = "";
-
-  document.addEventListener("keydown", e => {
-    if (e.key.length === 1) {
-      typedKeys += e.key.toLowerCase();
-      typedKeys = typedKeys.slice(-20);
-    }
-
-    if (typedKeys.includes("delaplaine")) {
-      if (siteStatus) {
-        siteStatus.textContent = "System status: ADMIN MODE ENABLED";
-      }
-      typedKeys = "";
-    }
-  });
-
-  /* ---------------- STATUS ROTATOR ---------------- */
+  /* ---------------- SITE STATUS ---------------- */
   if (siteStatus) {
-    const statuses = [
-      "System status: ONLINE",
-      "Firewall: ACTIVE",
-      "Homelab: OPERATIONAL",
-      "NVR: RECORDING",
-      "Pi-hole: FILTERING"
-    ];
-
-    let index = 0;
-
-    setInterval(() => {
-      index = (index + 1) % statuses.length;
-      siteStatus.textContent = statuses[index];
-    }, 4000);
+    siteStatus.textContent = "Online";
   }
 });
