@@ -3,16 +3,16 @@
   --bg-soft: #0b0f14;
 
   --text: #f5f5f7;
-  --text-muted: rgba(245,245,247,0.78);
+  --text-muted: rgba(245, 245, 247, 0.78);
 
-  --border-soft: rgba(255,255,255,0.08);
-  --border-hover: rgba(95,163,181,0.35);
+  --border-soft: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(95, 163, 181, 0.35);
 
-  --card-bg: rgba(255,255,255,0.035);
-  --card-shadow: rgba(0,0,0,0.45);
+  --card-bg: rgba(255, 255, 255, 0.035);
+  --card-shadow: rgba(0, 0, 0, 0.45);
 
   --accent: #5fa3b5;
-  --accent-soft: rgba(95,163,181,0.12);
+  --accent-soft: rgba(95, 163, 181, 0.12);
 
   --link: #9fd7e4;
   --link-hover: #d5f1f6;
@@ -31,8 +31,8 @@ html {
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background:
-    radial-gradient(900px 500px at 10% -10%, rgba(255,255,255,0.05), transparent 60%),
-    radial-gradient(700px 500px at 90% 10%, rgba(255,255,255,0.04), transparent 55%),
+    radial-gradient(900px 500px at 10% -10%, rgba(255, 255, 255, 0.05), transparent 60%),
+    radial-gradient(700px 500px at 90% 10%, rgba(255, 255, 255, 0.04), transparent 55%),
     var(--bg);
   color: var(--text);
   line-height: 1.65;
@@ -58,6 +58,10 @@ body {
   background: radial-gradient(circle at top, #1c2a2e 0%, var(--bg) 60%);
   padding: 1.25rem 1.75rem;
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .site-header.nav-hidden {
@@ -74,6 +78,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
+  max-width: calc(100% - 70px);
 }
 
 .brand-title {
@@ -92,21 +97,21 @@ body {
 .nav-toggle {
   display: none;
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.16);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   color: #fff;
   font-size: 1.2rem;
   padding: 0.45rem 0.7rem;
   border-radius: 10px;
   cursor: pointer;
-  margin-top: 0.85rem;
+  margin-top: 0;
 }
 
 .navbar {
+  width: 100%;
   margin-top: 0.85rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  transition: max-height 0.3s ease, opacity 0.25s ease, margin-top 0.25s ease;
 }
 
 .nav-link {
@@ -116,9 +121,14 @@ body {
   padding: 0.45rem 0.95rem;
   border-radius: 999px;
   border: 1px solid transparent;
-  color: rgba(229,229,240,0.95);
-  background: rgba(255,255,255,0.025);
-  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, color 0.2s ease, opacity 0.2s ease;
+  color: rgba(229, 229, 240, 0.95);
+  background: rgba(255, 255, 255, 0.025);
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .nav-link:hover {
@@ -196,7 +206,7 @@ main {
   display: block;
   height: 1px;
   width: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
   margin-bottom: 0.9rem;
 }
 
@@ -204,7 +214,7 @@ main {
 .grid-card:hover {
   transform: translateY(-3px);
   border-color: var(--border-hover);
-  box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
 }
 
 .section-card h2 {
@@ -242,7 +252,7 @@ main {
 .grid-card-link:hover .grid-card {
   transform: translateY(-3px);
   border-color: var(--border-hover);
-  box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
 }
 
 .grid-card h3 {
@@ -277,18 +287,30 @@ a:hover {
 code {
   font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 0.85em;
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
   padding: 0.15rem 0.3rem;
   border-radius: 6px;
 }
 
 pre {
-  background: rgba(255,255,255,0.045);
+  background: rgba(255, 255, 255, 0.045);
   border: 1px solid var(--border-soft);
   border-radius: 12px;
   padding: 0.9rem 1rem;
   overflow-x: auto;
   margin-top: 0.6rem;
+}
+
+/* ---------- Lists ---------- */
+ul,
+ol {
+  padding-left: 1.25rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+li + li {
+  margin-top: 0.35rem;
 }
 
 /* ---------- Photo Grid ---------- */
@@ -304,14 +326,14 @@ pre {
   overflow: hidden;
   border-radius: 10px;
   border: 1px solid var(--border-soft);
-  background: rgba(255,255,255,0.02);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .photo-tile img {
-  display: block;
   width: 100%;
   height: 90px;
   object-fit: cover;
+  display: block;
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
@@ -337,7 +359,7 @@ pre {
 .lightbox-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0, 0, 0, 0.9);
   display: none;
   align-items: center;
   justify-content: center;
@@ -352,7 +374,7 @@ pre {
   max-width: 90vw;
   max-height: 90vh;
   border-radius: 14px;
-  box-shadow: 0 18px 45px rgba(0,0,0,0.8);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.8);
 }
 
 .lightbox-hint {
@@ -367,7 +389,7 @@ pre {
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.92);
+  background: rgba(0, 0, 0, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -383,14 +405,14 @@ pre {
   max-width: 95vw;
   max-height: 90vh;
   border-radius: 12px;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
 
 .lightbox-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
   border: none;
   font-size: 1.5rem;
@@ -412,15 +434,11 @@ main img {
   border-radius: 12px;
 }
 
-/* Keep photo gallery thumbnails small */
-.photo-tile img {
-  width: 100%;
-  height: 90px;
-  object-fit: cover;
-  display: block;
+/* ---------- Project expanders ---------- */
+.project {
+  cursor: pointer;
 }
 
-/* ---------- Project expanders ---------- */
 .project-details {
   max-height: 0;
   overflow: hidden;
@@ -430,10 +448,6 @@ main img {
 .project.open .project-details {
   max-height: 600px;
   margin-top: 1rem;
-}
-
-.project {
-  cursor: pointer;
 }
 
 /* ---------- Generic hover polish ---------- */
@@ -451,7 +465,7 @@ main img {
 .gallery-item:hover,
 .tile:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
 }
 
 /* ---------- Back to top ---------- */
@@ -463,9 +477,9 @@ main img {
   height: 44px;
   border: none;
   border-radius: 999px;
-  background: rgba(25,25,25,0.95);
+  background: rgba(25, 25, 25, 0.95);
   color: #fff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
@@ -488,7 +502,7 @@ body::before {
   pointer-events: none;
   background: radial-gradient(
     500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255,255,255,0.05),
+    rgba(255, 255, 255, 0.05),
     transparent 40%
   );
   z-index: 0;
@@ -525,6 +539,10 @@ div {
     padding: 1rem 1.1rem;
   }
 
+  .brand {
+    max-width: calc(100% - 60px);
+  }
+
   .brand-title {
     font-size: 1.25rem;
   }
@@ -539,15 +557,12 @@ div {
     flex-wrap: nowrap;
     gap: 0.75rem;
     width: 100%;
-    overflow: hidden;
-    max-height: 500px;
-    opacity: 1;
     margin-top: 1rem;
   }
 
   .navbar.closed {
-  display: none;
-}
+    display: none;
+  }
 
   .nav-link {
     display: block;
@@ -574,5 +589,10 @@ div {
 
   .page-title {
     font-size: 1.8rem;
+  }
+
+  .section-card,
+  .grid-card {
+    padding: 1.2rem 1.15rem;
   }
 }
